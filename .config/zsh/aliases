@@ -1,0 +1,5 @@
+alias xbee1="picocom --echo /dev/serial/by-id/usb-FTDI_FT232R_USB_UART_AL033E2Q-if00-port0"
+alias xbee2="picocom --echo /dev/serial/by-id/usb-FTDI_FT232R_USB_UART_A105TFE1-if00-port0"
+alias xbee3="picocom --echo /dev/serial/by-id/usb-FTDI_FT232R_USB_UART_AL033E26-if00-port0"
+
+alias config=dotbare

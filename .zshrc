@@ -26,3 +26,4 @@ autoload -Uz _zinit
 zinit light kazhala/dotbare
 
 export DOTBARE_DIR="$HOME/.dotbare"
+source $HOME/.config/zsh/aliases
