@@ -1,0 +1,10 @@
+snippet nvim-plugin "Create a lua plugin file for neovim."
+	-- Documentation: $1
+	PACKER.use {
+		'$2',
+		requires = {},
+		config = function()
+			require('$4').setup {
+			}
+		end
+	}
