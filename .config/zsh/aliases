@@ -1,0 +1,11 @@
+alias xbee1="picocom --echo /dev/serial/by-id/usb-FTDI_FT232R_USB_UART_AL033E2Q-if00-port0 --omap crcrlf"
+alias xbee2="picocom --echo /dev/serial/by-id/usb-FTDI_FT232R_USB_UART_A105TFE1-if00-port0 --omap crcrlf"
+alias xbee3="picocom --echo /dev/serial/by-id/usb-FTDI_FT232R_USB_UART_AL033E26-if00-port0 --omap crcrlf"
+
+alias arduino="picocom --echo /dev/serial/by-id/usb-Arduino__www.arduino.cc__0043_75735323230351516152-if00 --omap crcrlf -b 115200"
+
+alias jekyll-run="bundle exec jekyll serve"
+alias jekyll-drafts="bundle exec jekyll serve --drafts"
+
+alias plank-restore="cat $HOME/.config/plank/config.ini | dconf load /net/launchpad/plank/docks/"
+alias plank-save="dconf dump /net/launchpad/plank/docks/ > ~/.config/plank/config.ini"
