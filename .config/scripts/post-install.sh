@@ -4,9 +4,34 @@
 set -e
 
 SOFTWARE=(
+	nextcloud-client
+	brave-bin
+	chrome-gnome-shell
+	keepassxc
+	nfs-utils
+	nerd-fonts-roboto-mono
+	zsh
+	zinit-git
+	zsh-pure-prompt-git
+	phinger-cursors
+	tela-icon-theme
+	qt5-wayland
+	nextcloud-client-cloudproviders
+	python-nautilus
+	bluez-utils
+	bat
+	gdm-settings
+	yadm
+	lua-language-server
+	bash-language-server
+	transmission-gtk
+	evolution
+	pacman-contrib
+	fuse2 # fuse 2 for AppImage
 )
 
 XPS_SOFTWARE=(
+	sof-firmware
 )
 
 FRACTAL_SOFTWARE=(
@@ -44,21 +69,23 @@ FILENAME=${0##*/}
 FILEPATH=${0}                                                               
 DEVICE="XPS"
 
+# TODO install yadm and clone repo
+
 # start network
 sudo systemctl enable --now NetworkManager.service
 # TODO connect to network
 
 # enable hidpi for systemd-boot
 sudo sed -i 's/^#console-mode.*/console-mode auto/' /boot/loader/loader.conf
-sudo bootctl update
+# TODO ??? sudo bootctl update
 
 # configure pacman
 sudo sed -i 's/^#Color/Color/' /etc/pacman.conf
 sudo sed -i 's/^#ParallelDownloads.*/ParallelDownloads = 10/' /etc/pacman.conf
 
 # install paru for AUR
-sudo pacman -S --needed base-devel git
 if ! command -v paru &>/dev/null; then
+	sudo pacman -S --needed base-devel git
 	git clone https://aur.archlinux.org/paru.git
 	cd paru
 	makepkg -si
@@ -71,8 +98,7 @@ paru -S --needed ${SOFTWARE_GNOME[@]}
 sudo systemctl enable --now gdm.service
 
 # install software
-# paru -S --needed nextcloud-client
-# paru -S --needed brave-bin chrome-gnome-shell alacritty keepassxc nfs-utils nerd-fonts-roboto-mono zsh zinit-git zsh-pure-prompt-git phinger-cursors tela-icon-theme qt5-wayland nextcloud-client-cloudproviders python-nautilus sof-firmware bluez-utils bat gdm-settings yadm lua-language-server bash-language-server transmission-gtk evolution pacman-contrib fuse2 # fuse 2 for AppImage
+paru -S --needed ${SOFTWARE[@]}
 
 # sudo sed -i 's/^#DiscoverableTimeout.*/DiscoverableTimeout = 0/' /etc/bluetooth/main.conf
 # sudo sed -i 's/^#AlwaysPairable.*/AlwaysPairable = true/' /etc/bluetooth/main.conf
