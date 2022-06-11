@@ -86,7 +86,7 @@ sudo sed -i 's/^#ParallelDownloads.*/ParallelDownloads = 10/' /etc/pacman.conf
 
 # install paru for AUR
 if ! command -v paru &>/dev/null; then
-	sudo pacman -S --needed base-devel git
+	sudo pacman -S --needed --no-confirm base-devel git
 	git clone https://aur.archlinux.org/paru.git
 	cd paru
 	makepkg -si
@@ -94,11 +94,8 @@ if ! command -v paru &>/dev/null; then
 	rm -rf paru
 fi
 
-# install gnome
-paru -S --needed ${SOFTWARE_GNOME[@]}
-
 # install software
-paru -S --needed ${SOFTWARE[@]}
+paru -S --needed --no-confirm ${SOFTWARE_GNOME[@] ${SOFTWARE[@]}}
 
 cp $HOME/.config/wallpapers/fox-forest.jpg $HOME/.local/share/backgrounds/2022-06-10-19-33-29-fox-forest.jpg
 mkdir -p $HOME/.config/dconf/
