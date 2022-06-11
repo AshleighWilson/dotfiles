@@ -99,8 +99,8 @@ paru -S --needed --noconfirm ${SOFTWARE_GNOME[@]} ${SOFTWARE[@]}
 
 mkdir $HOME/.local/share/backgrounds/
 cp $HOME/.config/wallpapers/fox-forest.jpg $HOME/.local/share/backgrounds/2022-06-10-19-33-29-fox-forest.jpg
-mkdir -p $HOME/.config/dconf/
-cp $HOME/.config/gnome/dconf-backup $HOME/.config/dconf/user
+chsh -s /usr/bin/zsh
+rm -rf $HOME/.bash*
 
 # enable services
 sudo systemctl enable gdm.service
