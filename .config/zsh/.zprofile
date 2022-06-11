@@ -2,4 +2,8 @@ if [[ `hostnamectl --static` == "xps" ]]; then
 	# Do device specific stuff.
 fi
 
-export QT_QPA_PLATFORM=wayland
+# Wayland specific
+if [[ "$XDG_SESSION_TYPE" == "wayland" ]]; then
+    export MOZ_ENABLE_WAYLAND=1
+	export QT_QPA_PLATFORM=wayland
+fi
