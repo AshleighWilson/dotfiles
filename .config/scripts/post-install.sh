@@ -95,10 +95,14 @@ fi
 
 # install gnome
 paru -S --needed ${SOFTWARE_GNOME[@]}
-sudo systemctl enable --now gdm.service
 
 # install software
 paru -S --needed ${SOFTWARE[@]}
+
+# enable services
+sudo systemctl enable gdm.service
+
+echo "Reboot now."
 
 # sudo sed -i 's/^#DiscoverableTimeout.*/DiscoverableTimeout = 0/' /etc/bluetooth/main.conf
 # sudo sed -i 's/^#AlwaysPairable.*/AlwaysPairable = true/' /etc/bluetooth/main.conf
