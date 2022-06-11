@@ -89,7 +89,7 @@ if ! command -v paru &>/dev/null; then
 	sudo pacman -S --needed --noconfirm base-devel git
 	git clone https://aur.archlinux.org/paru.git
 	cd paru
-	makepkg -si
+	makepkg -si --noconfirm
 	cd ..
 	rm -rf paru
 fi
