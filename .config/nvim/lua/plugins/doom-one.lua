@@ -9,7 +9,7 @@ PACKER.use({
             enable_treesitter = true,
             transparent_background = false,
             pumblend = {
-                enable = true,
+                enable = false,
                 transparency_amount = 80,
             },
             plugins_integrations = {
