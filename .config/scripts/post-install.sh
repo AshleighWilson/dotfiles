@@ -102,6 +102,8 @@ cp $HOME/.config/wallpapers/fox-forest.jpg $HOME/.local/share/backgrounds/2022-0
 sudo chsh -s /usr/bin/zsh $USER
 rm -rf $HOME/.bash*
 
+dconf load / < $HOME/.config/gnome/dconf-backup
+
 # enable services
 sudo systemctl enable gdm.service
 
