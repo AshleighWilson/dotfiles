@@ -2,6 +2,15 @@
 -- https://vonheikemen.github.io/devlog/tools/configuring-neovim-using-lua/
 -- https://github.com/nanotee/nvim-lua-guide
 
+function augroup(name, autocmds)
+  vim.cmd('augroup ' .. name)
+  vim.cmd('autocmd!')
+  for _, autocmd in ipairs(autocmds) do
+    vim.cmd('autocmd ' .. autocmd)
+  end
+  vim.cmd('augroup END')
+end
+
 -- Plugins
 require('plugins')
 
@@ -43,19 +52,4 @@ vim.cmd([[
   augroup end
 ]])
 
-local function augroup(name, autocmds)
-  vim.cmd('augroup ' .. name)
-  vim.cmd('autocmd!')
-  for _, autocmd in ipairs(autocmds) do
-    vim.cmd('autocmd ' .. autocmd)
-  end
-  vim.cmd('augroup END')
-end
 
--- Orgmode
-augroup('orgmode', {
-  "FileType org :set conceallevel=2",
-  "FileType org :set concealcursor=nc",
-  "FileType org :set autochdir",
-  "FileType org :lua org_keymaps()",
-})
