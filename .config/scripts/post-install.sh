@@ -63,6 +63,7 @@ SOFTWARE_GNOME=(
 	tracker3-miners
 	xdg-user-dirs-gtk
 	gnome-tweaks
+	adw-gtk3-git
 )
 
 # config variables
@@ -77,7 +78,7 @@ sudo systemctl enable --now NetworkManager.service
 # TODO connect to network
 
 # enable hidpi for systemd-boot
-sudo sed -i 's/^#console-mode.*/console-mode auto/' /boot/loader/loader.conf
+sudo sed -i 's/^#console-mode.*/console-mode max/' /boot/loader/loader.conf
 # TODO ??? sudo bootctl update
 
 # configure pacman
