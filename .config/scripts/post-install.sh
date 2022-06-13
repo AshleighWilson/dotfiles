@@ -99,6 +99,9 @@ DEVICE="XPS"
 
 # TODO install yadm and clone repo
 
+# show untracked config files
+yadm gitconfig --unset status.showUntrackedFiles
+
 # start network
 sudo systemctl enable --now NetworkManager.service
 # TODO connect to network
