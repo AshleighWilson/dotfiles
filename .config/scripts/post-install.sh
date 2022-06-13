@@ -1,5 +1,7 @@
 #!/bin/sh
 
+INSTALL_CMD="paru -S --noconfirm --needed"
+
 # exit if any command fails
 set -e
 
@@ -29,6 +31,9 @@ SOFTWARE=(
 	pacman-contrib
 	fuse2 # fuse 2 for AppImage
 	neovim
+	ccls
+	ripgrep-all
+	lazygit
 )
 
 XPS_SOFTWARE=(
@@ -64,7 +69,28 @@ SOFTWARE_GNOME=(
 	xdg-user-dirs-gtk
 	gnome-tweaks
 	adw-gtk3-git
+	totem
+	gst-libav # gstreamer codecs (totem)
 )
+
+SOFTWARE_ELECTRONICS=(
+	fritzing
+	platformio
+	platformio-udev-rules
+)
+
+if [ "$1" == "install" ]; then
+	if [ "$2" == "electronics" ]; then
+		function install_electronics {
+			echo "Installing electronics software.."
+			$INSTALL_CMD ${SOFTWARE_ELECTRONICS[@]}
+			sudo usermod -aG uucp $USER
+			sudo usermod -aG lock $USER
+		}
+		install_electronics
+	fi
+	exit
+fi
 
 # config variables
 FILENAME=${0##*/}                                                           
@@ -109,6 +135,10 @@ dconf load / < $HOME/.config/gnome/dconf-backup
 sudo systemctl enable gdm.service
 
 echo "Reboot now."
+
+# TODO Setup nextcloud
+# TODO KeePassXC keyfile and sshkeys
+# TODO Steam and correct vulkan libs, Steam proton
 
 # sudo sed -i 's/^#DiscoverableTimeout.*/DiscoverableTimeout = 0/' /etc/bluetooth/main.conf
 # sudo sed -i 's/^#AlwaysPairable.*/AlwaysPairable = true/' /etc/bluetooth/main.conf
