@@ -64,6 +64,8 @@ if [ "$DEVICE" == "SERVER" ]; then
 
 	sudo usermod -aG libvirt ashleigh
 	sudo systemctl enable --now libvirtd
+	sudo sed -i 's/#user =.*/user = "ashleigh"/' /etc/libvirt/qemu.conf
+	sudo sed -i 's/#group =.*/group = "ashleigh"/' /etc/libvirt/qemu.conf
 else
 	echo not server
 fi
