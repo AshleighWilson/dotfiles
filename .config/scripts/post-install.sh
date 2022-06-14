@@ -24,6 +24,8 @@ SERVER=(
 	qemu-base
 	gnu-netcat
 	dnsmasq
+	bridge-utils
+	netctl
 )
 
 echo "Enabling untracked files in yadm.. "
@@ -66,6 +68,23 @@ if [ "$DEVICE" == "SERVER" ]; then
 	sudo systemctl enable --now libvirtd
 	sudo sed -i 's/#user =.*/user = "ashleigh"/' /etc/libvirt/qemu.conf
 	sudo sed -i 's/#group =.*/group = "ashleigh"/' /etc/libvirt/qemu.conf
+
+	sudo cat << EOF > /etc/netctl/kvm-bridge
+Description="Bridge Interface br0 : enp2s0"
+Interface=br0
+Connection=bridge
+BindsToInterfaces=(enp2s0)
+IP=static
+Address='192.168.1.2/24'
+Gateway='192.168.1.1'
+DNS='8.8.8.8'
+MACAddressOf=enp2s0
+
+## Ignore (R)STP and immediately activate the bridge
+SkipForwardingDelay=yes
+EOF
+sudo netctl enable kvm-bridge
+
 else
 	echo not server
 fi
