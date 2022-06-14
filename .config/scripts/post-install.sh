@@ -26,6 +26,9 @@ SERVER=(
 	dnsmasq
 	bridge-utils
 	netctl
+	
+	docker
+	docker-compose
 )
 
 echo "Enabling untracked files in yadm.. "
@@ -69,21 +72,29 @@ if [ "$DEVICE" == "SERVER" ]; then
 	sudo sed -i 's/#user =.*/user = "ashleigh"/' /etc/libvirt/qemu.conf
 	sudo sed -i 's/#group =.*/group = "ashleigh"/' /etc/libvirt/qemu.conf
 
-	sudo cat << EOF > /etc/netctl/kvm-bridge
-Description="Bridge Interface br0 : enp2s0"
-Interface=br0
-Connection=bridge
-BindsToInterfaces=(enp2s0)
-IP=static
-Address='192.168.1.2/24'
-Gateway='192.168.1.1'
-DNS='8.8.8.8'
-MACAddressOf=enp2s0
+	sudo tee -a /etc/netctl/kvm-bridge > /dev/null << EOL
+	Description="Bridge Interface br0 : enp2s0"
+	Interface=br0
+	Connection=bridge
+	BindsToInterfaces=(enp2s0)
+	IP=static
+	Address='192.168.1.2/24'
+	Gateway='192.168.1.1'
+	DNS='8.8.8.8'
+	MACAddressOf=enp2s0
 
-## Ignore (R)STP and immediately activate the bridge
-SkipForwardingDelay=yes
-EOF
-sudo netctl enable kvm-bridge
+	## Ignore (R)STP and immediately activate the bridge
+	SkipForwardingDelay=yes
+EOL
+	sudo netctl enable kvm-bridge
+
+	sudo mkdir -p /etc/systemd/system/docker.service.d/
+	sudo tee -a /etc/systemd/system/docker.service.d/override.conf > /dev/null << EOL
+	[Service]
+	ExecStartPost=/usr/sbin/iptables -I DOCKER-USER -i br0 -o br0 -j ACCEPT
+EOL
+	sudo systemctl daemon-reload
+	sudo systemctl restart docker
 
 else
 	echo not server
