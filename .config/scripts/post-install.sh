@@ -1,9 +1,83 @@
 #!/bin/sh
 
+DEVICE="SERVER"
+
 INSTALL_CMD="paru -S --noconfirm --needed"
+
+
+CORE=(
+	bash-language-server
+	neovim
+	zsh
+	zinit-git
+	zsh-pure-prompt-git
+	openssh
+	wget
+)
+
+SERVER=(
+
+	# virt machines
+	libvirt
+	# iptables-nft
+	edk2-ovmf
+	qemu-base
+	gnu-netcat
+	dnsmasq
+)
+
+echo "Enabling untracked files in yadm.. "
+# show untracked config files
+yadm gitconfig --unset status.showUntrackedFiles
 
 # exit if any command fails
 set -e
+
+echo "Starting network.. "
+sudo systemctl enable --now NetworkManager.service
+# TODO connect to network
+
+# configure pacman
+sudo sed -i 's/^#Color/Color/' /etc/pacman.conf
+sudo sed -i 's/^#ParallelDownloads.*/ParallelDownloads = 10/' /etc/pacman.conf
+
+# install paru for AUR
+if ! command -v paru &>/dev/null; then
+	sudo pacman -S --needed --noconfirm base-devel git
+	git clone https://aur.archlinux.org/paru.git
+	cd paru
+	makepkg -si --noconfirm
+	cd ..
+	rm -rf paru
+fi
+
+$INSTALL_CMD ${CORE[@]}
+sudo chsh -s /usr/bin/zsh $USER
+rm -rf $HOME/.bash*
+
+if [ "$DEVICE" == "SERVER" ]; then
+	echo "Installing server software.. "
+	$INSTALL_CMD ${SERVER[@]}
+
+	sudo systemctl enable --now sshd
+	#disable password auth
+
+	sudo usermod -aG libvirt ashleigh
+	sudo systemctl enable --now libvirtd
+else
+	echo not server
+fi
+exit 0
+
+
+# enable hidpi for systemd-boot
+sudo sed -i 's/^#console-mode.*/console-mode max/' /boot/loader/loader.conf
+# TODO ??? sudo bootctl update
+
+# install software
+paru -S --needed --noconfirm ${SOFTWARE_GNOME[@]} ${SOFTWARE[@]}
+
+exit 0
 
 SOFTWARE=(
 	nextcloud-client
@@ -13,8 +87,6 @@ SOFTWARE=(
 	nfs-utils
 	nerd-fonts-roboto-mono
 	zsh
-	zinit-git
-	zsh-pure-prompt-git
 	phinger-cursors
 	tela-icon-theme
 	qt5-wayland
@@ -98,42 +170,10 @@ fi
 # config variables
 FILENAME=${0##*/}                                                           
 FILEPATH=${0}                                                               
-DEVICE="XPS"
 
-# TODO install yadm and clone repo
-
-# show untracked config files
-yadm gitconfig --unset status.showUntrackedFiles
-
-# start network
-sudo systemctl enable --now NetworkManager.service
-# TODO connect to network
-
-# enable hidpi for systemd-boot
-sudo sed -i 's/^#console-mode.*/console-mode max/' /boot/loader/loader.conf
-# TODO ??? sudo bootctl update
-
-# configure pacman
-sudo sed -i 's/^#Color/Color/' /etc/pacman.conf
-sudo sed -i 's/^#ParallelDownloads.*/ParallelDownloads = 10/' /etc/pacman.conf
-
-# install paru for AUR
-if ! command -v paru &>/dev/null; then
-	sudo pacman -S --needed --noconfirm base-devel git
-	git clone https://aur.archlinux.org/paru.git
-	cd paru
-	makepkg -si --noconfirm
-	cd ..
-	rm -rf paru
-fi
-
-# install software
-paru -S --needed --noconfirm ${SOFTWARE_GNOME[@]} ${SOFTWARE[@]}
 
 mkdir $HOME/.local/share/backgrounds/
 cp $HOME/.config/wallpapers/fox-forest.jpg $HOME/.local/share/backgrounds/2022-06-10-19-33-29-fox-forest.jpg
-sudo chsh -s /usr/bin/zsh $USER
-rm -rf $HOME/.bash*
 
 dconf load / < $HOME/.config/gnome/dconf-backup
 
