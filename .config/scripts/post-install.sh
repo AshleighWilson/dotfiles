@@ -93,8 +93,7 @@ EOL
 	[Service]
 	ExecStartPost=/usr/sbin/iptables -I DOCKER-USER -i br0 -o br0 -j ACCEPT
 EOL
-	sudo systemctl daemon-reload
-	sudo systemctl restart docker
+	sudo systemctl enable docker
 
 else
 	echo not server
