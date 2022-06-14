@@ -71,6 +71,9 @@ SOFTWARE_GNOME=(
 	adw-gtk3-git
 	totem
 	gst-libav # gstreamer codecs (totem)
+	picocom
+	polari # irc client
+	gparted
 )
 
 SOFTWARE_ELECTRONICS=(
