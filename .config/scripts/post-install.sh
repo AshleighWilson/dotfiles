@@ -96,7 +96,7 @@ EOL
 EOL
 	sudo systemctl enable docker
 
-	sudo echo "UUID=0c3044be-9ff6-4a13-bc56-73b0d9eea92b /mnt/data btrfs defaults 0 0" >> /etc/fstab
+	echo "UUID=0c3044be-9ff6-4a13-bc56-73b0d9eea92b /mnt/data btrfs defaults 0 0" | sudo tee -a /etc/fstab
 
 else
 	echo not server
