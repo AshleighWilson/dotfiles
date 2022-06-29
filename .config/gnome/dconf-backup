@@ -3,7 +3,7 @@ never-applied=false
 
 [io/github/realmazharhussain/GdmSettings/appearance]
 background-color='rgb(40,40,40)'
-background-image='/home/ashleigh/Nextcloud/Media/Wallpapers/fox-forest.jpg'
+background-image='/home/ashleigh/.local/share/backgrounds/2022-06-10-19-33-29-fox-forest.jpg'
 background-type='Image'
 cursor-theme='phinger-cursors-light'
 icon-theme='Tela-purple'
@@ -64,7 +64,7 @@ top-bar-text-color='rgb(250,250,250)'
 
 [io/github/realmazharhussain/GdmSettings/window-state]
 height=uint32 500
-last-visited-page='appearance'
+last-visited-page='display'
 paned-position=uint32 170
 width=uint32 800
 
@@ -98,7 +98,7 @@ word-size=64
 
 [org/gnome/control-center]
 last-panel='background'
-window-state=(1034, 672, false)
+window-state=(1034, 972, false)
 
 [org/gnome/desktop/app-folders]
 folder-children=['Utilities', 'YaST']
@@ -140,10 +140,16 @@ icon-theme='Tela-purple'
 text-scaling-factor=1.0
 
 [org/gnome/desktop/notifications]
-application-children=['gnome-power-panel', 'org-gnome-nautilus', 'org-gnome-settings', 'brave-browser', 'transmission-gtk', 'org-gnome-evolution']
+application-children=['gnome-power-panel', 'org-gnome-nautilus', 'org-gnome-settings', 'brave-browser', 'transmission-gtk', 'org-gnome-evolution', 'com-nextcloud-desktopclient-nextcloud', 'steam', 'org-keepassxc-keepassxc', 'org-gnome-polari', 'firefox']
 
 [org/gnome/desktop/notifications/application/brave-browser]
 application-id='brave-browser.desktop'
+
+[org/gnome/desktop/notifications/application/com-nextcloud-desktopclient-nextcloud]
+application-id='com.nextcloud.desktopclient.nextcloud.desktop'
+
+[org/gnome/desktop/notifications/application/firefox]
+application-id='firefox.desktop'
 
 [org/gnome/desktop/notifications/application/gnome-power-panel]
 application-id='gnome-power-panel.desktop'
@@ -154,11 +160,23 @@ application-id='org.gnome.Evolution.desktop'
 [org/gnome/desktop/notifications/application/org-gnome-nautilus]
 application-id='org.gnome.Nautilus.desktop'
 
+[org/gnome/desktop/notifications/application/org-gnome-polari]
+application-id='org.gnome.Polari.desktop'
+
 [org/gnome/desktop/notifications/application/org-gnome-settings]
 application-id='org.gnome.Settings.desktop'
 
+[org/gnome/desktop/notifications/application/org-keepassxc-keepassxc]
+application-id='org.keepassxc.KeePassXC.desktop'
+
+[org/gnome/desktop/notifications/application/steam]
+application-id='steam.desktop'
+
 [org/gnome/desktop/notifications/application/transmission-gtk]
 application-id='transmission-gtk.desktop'
+
+[org/gnome/desktop/peripherals/keyboard]
+numlock-state=false
 
 [org/gnome/desktop/peripherals/mouse]
 speed=-0.36521739130434783
@@ -178,7 +196,7 @@ secondary-color='#000000000000'
 sort-order=['org.gnome.Contacts.desktop', 'org.gnome.Documents.desktop', 'org.gnome.Nautilus.desktop']
 
 [org/gnome/desktop/session]
-idle-delay=uint32 300
+idle-delay=uint32 900
 
 [org/gnome/desktop/sound]
 event-sounds=true
@@ -267,11 +285,23 @@ statusbar-visible=true
 toolbar-visible=true
 
 [org/gnome/evolution/shell/window]
-height=820
+height=1063
 maximized=false
-width=1466
-x=35
-y=32
+width=1948
+x=834
+y=694
+
+[org/gnome/file-roller/listing]
+list-mode='as-folder'
+name-column-width=250
+show-path=false
+sort-method='name'
+sort-type='ascending'
+
+[org/gnome/file-roller/ui]
+sidebar-width=200
+window-height=480
+window-width=1390
 
 [org/gnome/gnome-system-monitor]
 current-tab='disks'
@@ -284,6 +314,15 @@ window-state=(1183, 811, 26, 23)
 [org/gnome/gnome-system-monitor/disktreenew]
 col-6-visible=true
 col-6-width=0
+
+[org/gnome/maps]
+last-viewed-location=[51.595834835404673, -3.7540948390960693]
+map-type='MapsStreetSource'
+transportation-type='car'
+window-maximized=false
+window-position=[909, 616]
+window-size=[1927, 1118]
+zoom-level=11
 
 [org/gnome/mutter]
 center-new-windows=true
@@ -300,8 +339,18 @@ search-filter-time-type='last_modified'
 search-view='list-view'
 
 [org/gnome/nautilus/window-state]
-initial-size=(890, 550)
+initial-size=(1218, 632)
 maximized=false
+
+[org/gnome/nm-applet/eap/cbd1e2d2-93dc-34df-b37f-5039de96f4cf]
+ignore-ca-cert=false
+ignore-phase2-ca-cert=false
+
+[org/gnome/polari]
+last-selected-channel={'account': <'/org/freedesktop/Telepathy/Account/idle/irc/ashleigh0'>, 'channel': <'#neovim'>}
+saved-channel-list=[{'account': <'/org/freedesktop/Telepathy/Account/idle/irc/ashleigh0'>, 'channel': <'#neovim'>}]
+window-maximized=false
+window-size=[1295, 871]
 
 [org/gnome/settings-daemon/plugins/media-keys]
 calculator=['<Super>c']
@@ -314,11 +363,12 @@ command='gnome-terminal'
 name='Terminal'
 
 [org/gnome/settings-daemon/plugins/power]
-power-button-action='hibernate'
+power-button-action='interactive'
+sleep-inactive-ac-timeout=1800
 
 [org/gnome/shell]
-enabled-extensions=['dash-to-dock-cosmic-@halfmexicanhalfamazing@gmail.com', 'hibernate-status@dromi', 'arch-update@RaphaelRochet']
-favorite-apps=['org.gnome.Nautilus.desktop', 'brave-browser.desktop', 'org.gnome.Evolution.desktop', 'org.keepassxc.KeePassXC.desktop', 'org.gnome.Terminal.desktop']
+enabled-extensions=['dash-to-dock-cosmic-@halfmexicanhalfamazing@gmail.com', 'hibernate-status@dromi', 'arch-update@RaphaelRochet', 'trayIconsReloaded@selfmade.pl', 'caffeine@patapon.info', 'blur-my-shell@aunetx']
+favorite-apps=['org.gnome.Nautilus.desktop', 'firefox.desktop', 'org.gnome.Evolution.desktop', 'org.keepassxc.KeePassXC.desktop', 'org.gnome.Terminal.desktop']
 welcome-dialog-last-shown-version='42.2'
 
 [org/gnome/shell/extensions/arch-update]
@@ -328,6 +378,16 @@ position-number=0
 show-count=true
 update-cmd='gnome-terminal -- /bin/sh -c "paru ; echo Done - Press enter to exit; read _" '
 use-buildin-icons=false
+
+[org/gnome/shell/extensions/blur-my-shell/applications]
+customize=false
+
+[org/gnome/shell/extensions/blur-my-shell/dash-to-dock]
+blur=false
+override-background=true
+
+[org/gnome/shell/extensions/caffeine]
+user-enabled=true
 
 [org/gnome/shell/extensions/dash-to-dock]
 animate-show-apps=true
@@ -347,7 +407,7 @@ icon-size-fixed=false
 intellihide-mode='FOCUS_APPLICATION_WINDOWS'
 middle-click-action='launch'
 preferred-monitor=-2
-preferred-monitor-by-connector='eDP-1'
+preferred-monitor-by-connector='DP-0'
 preview-size-scale=0.0
 running-indicator-dominant-color=false
 running-indicator-style='DOTS'
@@ -362,12 +422,19 @@ show-trash=false
 transparency-mode='FIXED'
 unity-backlit-items=false
 
+[org/gnome/shell/extensions/hibernate-status-button]
+hibernate-works-check=false
+
 [org/gnome/shell/extensions/trayIconsReloaded]
 applications='[{"id":"com.nextcloud.desktopclient.nextcloud.desktop","hidden":false}]'
 icon-margin-horizontal=0
 icon-margin-vertical=0
-icon-padding-horizontal=0
+icon-padding-horizontal=14
+icon-saturation=0
 icon-size=24
+position-weight=0
+tray-margin-left=0
+tray-margin-right=0
 
 [org/gnome/shell/extensions/user-theme]
 name='default-pure'
@@ -376,7 +443,7 @@ name='default-pure'
 toggle-overview=@as []
 
 [org/gnome/software]
-check-timestamp=int64 1654926962
+check-timestamp=int64 1656481840
 first-run=false
 
 [org/gnome/terminal/legacy]
@@ -429,8 +496,154 @@ sort-column='name'
 sort-directories-first=true
 sort-order='ascending'
 type-format='category'
-window-position=(35, 32)
+window-position=(800, 1132)
 window-size=(1203, 902)
+
+[org/virt-manager/virt-manager]
+manager-window-height=550
+manager-window-width=550
+
+[org/virt-manager/virt-manager/confirm]
+delete-storage=true
+forcepoweroff=false
+removedev=true
+unapplied-dev=true
+
+[org/virt-manager/virt-manager/connections]
+autoconnect=['qemu+ssh://ashleigh@server/system']
+uris=['qemu+ssh://ashleigh@server/system']
+
+[org/virt-manager/virt-manager/conns/lxc+ssh:ashleigh@192.168.1.2:85]
+window-size=(800, 600)
+
+[org/virt-manager/virt-manager/conns/qemu+ssh:ashleigh@serversystem]
+pretty-name='QEMU/KVM: server'
+window-size=(800, 600)
+
+[org/virt-manager/virt-manager/details]
+show-toolbar=true
+
+[org/virt-manager/virt-manager/new-vm]
+graphics-type='system'
+
+[org/virt-manager/virt-manager/vmlist-fields]
+disk-usage=false
+network-traffic=false
+
+[org/virt-manager/virt-manager/vms/04db908152374e6bacb28357a45cd98e]
+autoconnect=1
+scaling=1
+vm-window-size=(1024, 837)
+
+[org/virt-manager/virt-manager/vms/0505a05f605a4b64aea54018b33284bf]
+autoconnect=1
+scaling=1
+vm-window-size=(1526, 1039)
+
+[org/virt-manager/virt-manager/vms/051ed836b8764f93a3f403bc7267753c]
+autoconnect=1
+scaling=1
+vm-window-size=(1446, 1096)
+
+[org/virt-manager/virt-manager/vms/1132c816fd7e4b85afb88c3dc8c7827d]
+autoconnect=1
+scaling=1
+vm-window-size=(1610, 1065)
+
+[org/virt-manager/virt-manager/vms/12c614065cc24a4b9cc3799a27d7608f]
+autoconnect=1
+scaling=1
+vm-window-size=(1539, 1034)
+
+[org/virt-manager/virt-manager/vms/179decc3604f4709b9f1d8e32d802f03]
+autoconnect=1
+scaling=1
+vm-window-size=(1235, 1043)
+
+[org/virt-manager/virt-manager/vms/23f978b5ae52427099fbc30de31ebc91]
+autoconnect=1
+scaling=1
+vm-window-size=(1306, 1052)
+
+[org/virt-manager/virt-manager/vms/687ff21acea8410297e1b9d73c2ba737]
+autoconnect=1
+scaling=1
+vm-window-size=(1024, 810)
+
+[org/virt-manager/virt-manager/vms/7049e143a5944cf5b2cc7f6316ae5e3f]
+autoconnect=1
+scaling=1
+vm-window-size=(1024, 810)
+
+[org/virt-manager/virt-manager/vms/7061fa5cd4264479ad12d2de5f0d1c81]
+autoconnect=1
+scaling=1
+vm-window-size=(1024, 810)
+
+[org/virt-manager/virt-manager/vms/7805ab5848be4e6eab42a4916c38f3ce]
+autoconnect=1
+scaling=1
+vm-window-size=(1024, 810)
+
+[org/virt-manager/virt-manager/vms/7f73c3f8a61943869384a50832aacb5d]
+autoconnect=1
+scaling=1
+vm-window-size=(1024, 810)
+
+[org/virt-manager/virt-manager/vms/89b48d296ac04f54ae4d21e692367c82]
+autoconnect=1
+scaling=1
+vm-window-size=(1024, 810)
+
+[org/virt-manager/virt-manager/vms/9e00ea2ae44242bea31921f7f61ca2be]
+autoconnect=1
+scaling=1
+vm-window-size=(1024, 810)
+
+[org/virt-manager/virt-manager/vms/9ea2dded78814a2081cce910c3c6e3d9]
+autoconnect=1
+scaling=1
+vm-window-size=(1024, 837)
+
+[org/virt-manager/virt-manager/vms/b9d39957ceac4262ba48cb33f2b95138]
+autoconnect=1
+scaling=1
+vm-window-size=(1024, 810)
+
+[org/virt-manager/virt-manager/vms/bfb66b673a6344b1b4a1ee6dfc1b47a7]
+autoconnect=1
+scaling=1
+vm-window-size=(1329, 1016)
+
+[org/virt-manager/virt-manager/vms/c6546d6fd9da4f3f8dc415e810955c5e]
+autoconnect=1
+scaling=1
+vm-window-size=(1024, 810)
+
+[org/virt-manager/virt-manager/vms/cc7c2082f83d491b8c8792d3d023552c]
+autoconnect=1
+scaling=1
+vm-window-size=(1351, 1082)
+
+[org/virt-manager/virt-manager/vms/d7ae1484acfc4c3b883ceb26c517159a]
+autoconnect=1
+scaling=1
+vm-window-size=(1579, 1175)
+
+[org/virt-manager/virt-manager/vms/dcf7b057e674436ebb150cc94095e638]
+autoconnect=1
+scaling=1
+vm-window-size=(1024, 810)
+
+[org/virt-manager/virt-manager/vms/f1e7c7e124dd4183ab1b9b636f0e2afc]
+autoconnect=1
+scaling=1
+vm-window-size=(1024, 837)
+
+[org/virt-manager/virt-manager/vms/fe8d668ca03445abb48daf4dedd3e85a]
+autoconnect=1
+scaling=1
+vm-window-size=(1024, 810)
 
 [system/proxy]
 mode='none'
