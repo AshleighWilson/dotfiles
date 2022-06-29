@@ -1,7 +1,117 @@
 #!/bin/sh
 
+DEVICE="SERVER"
+
+INSTALL_CMD="paru -S --noconfirm --needed"
+
+
+CORE=(
+	bash-language-server
+	neovim
+	zsh
+	zinit-git
+	zsh-pure-prompt-git
+	openssh
+	wget
+)
+
+SERVER=(
+
+	# virt machines
+	libvirt
+	# iptables-nft
+	edk2-ovmf
+	qemu-base
+	gnu-netcat
+	dnsmasq
+	bridge-utils
+	netctl
+	
+	docker
+	docker-compose
+	lazydocker
+)
+
+echo "Enabling untracked files in yadm.. "
+# show untracked config files
+yadm gitconfig --unset status.showUntrackedFiles
+
 # exit if any command fails
 set -e
+
+echo "Starting network.. "
+sudo systemctl enable --now NetworkManager.service
+# TODO connect to network
+
+# configure pacman
+sudo sed -i 's/^#Color/Color/' /etc/pacman.conf
+sudo sed -i 's/^#ParallelDownloads.*/ParallelDownloads = 10/' /etc/pacman.conf
+
+# install paru for AUR
+if ! command -v paru &>/dev/null; then
+	sudo pacman -S --needed --noconfirm base-devel git
+	git clone https://aur.archlinux.org/paru.git
+	cd paru
+	makepkg -si --noconfirm
+	cd ..
+	rm -rf paru
+fi
+
+$INSTALL_CMD ${CORE[@]}
+sudo chsh -s /usr/bin/zsh $USER
+rm -rf $HOME/.bash*
+
+if [ "$DEVICE" == "SERVER" ]; then
+	echo "Installing server software.. "
+	$INSTALL_CMD ${SERVER[@]}
+
+	sudo systemctl enable --now sshd
+	#disable password auth
+
+	sudo usermod -aG libvirt ashleigh
+	sudo systemctl enable --now libvirtd
+	sudo sed -i 's/#user =.*/user = "ashleigh"/' /etc/libvirt/qemu.conf
+	sudo sed -i 's/#group =.*/group = "ashleigh"/' /etc/libvirt/qemu.conf
+
+	sudo tee -a /etc/netctl/kvm-bridge > /dev/null << EOL
+	Description="Bridge Interface br0 : enp2s0"
+	Interface=br0
+	Connection=bridge
+	BindsToInterfaces=(enp2s0)
+	IP=static
+	Address='192.168.1.2/24'
+	Gateway='192.168.1.1'
+	DNS='8.8.8.8'
+	MACAddressOf=enp2s0
+
+	## Ignore (R)STP and immediately activate the bridge
+	SkipForwardingDelay=yes
+EOL
+	sudo netctl enable kvm-bridge
+
+	sudo mkdir -p /etc/systemd/system/docker.service.d/
+	sudo tee -a /etc/systemd/system/docker.service.d/override.conf > /dev/null << EOL
+	[Service]
+	ExecStartPost=/usr/sbin/iptables -I DOCKER-USER -i br0 -o br0 -j ACCEPT
+EOL
+	sudo systemctl enable docker
+
+	echo "UUID=0c3044be-9ff6-4a13-bc56-73b0d9eea92b /mnt/data btrfs defaults 0 0" | sudo tee -a /etc/fstab
+
+else
+	echo not server
+fi
+exit 0
+
+
+# enable hidpi for systemd-boot
+sudo sed -i 's/^#console-mode.*/console-mode max/' /boot/loader/loader.conf
+# TODO ??? sudo bootctl update
+
+# install software
+paru -S --needed --noconfirm ${SOFTWARE_GNOME[@]} ${SOFTWARE[@]}
+
+exit 0
 
 SOFTWARE=(
 	nextcloud-client
@@ -11,8 +121,6 @@ SOFTWARE=(
 	nfs-utils
 	nerd-fonts-roboto-mono
 	zsh
-	zinit-git
-	zsh-pure-prompt-git
 	phinger-cursors
 	tela-icon-theme
 	qt5-wayland
@@ -29,6 +137,9 @@ SOFTWARE=(
 	pacman-contrib
 	fuse2 # fuse 2 for AppImage
 	neovim
+	ccls
+	ripgrep-all
+	lazygit
 )
 
 XPS_SOFTWARE=(
@@ -64,44 +175,39 @@ SOFTWARE_GNOME=(
 	xdg-user-dirs-gtk
 	gnome-tweaks
 	adw-gtk3-git
+	totem
+	gst-libav # gstreamer codecs (totem)
+	picocom
+	polari # irc client
+	gparted
 )
+
+SOFTWARE_ELECTRONICS=(
+	fritzing
+	platformio
+	platformio-udev-rules
+)
+
+if [ "$1" == "install" ]; then
+	if [ "$2" == "electronics" ]; then
+		function install_electronics {
+			echo "Installing electronics software.."
+			$INSTALL_CMD ${SOFTWARE_ELECTRONICS[@]}
+			sudo usermod -aG uucp $USER
+			sudo usermod -aG lock $USER
+		}
+		install_electronics
+	fi
+	exit
+fi
 
 # config variables
 FILENAME=${0##*/}                                                           
 FILEPATH=${0}                                                               
-DEVICE="XPS"
 
-# TODO install yadm and clone repo
-
-# start network
-sudo systemctl enable --now NetworkManager.service
-# TODO connect to network
-
-# enable hidpi for systemd-boot
-sudo sed -i 's/^#console-mode.*/console-mode max/' /boot/loader/loader.conf
-# TODO ??? sudo bootctl update
-
-# configure pacman
-sudo sed -i 's/^#Color/Color/' /etc/pacman.conf
-sudo sed -i 's/^#ParallelDownloads.*/ParallelDownloads = 10/' /etc/pacman.conf
-
-# install paru for AUR
-if ! command -v paru &>/dev/null; then
-	sudo pacman -S --needed --noconfirm base-devel git
-	git clone https://aur.archlinux.org/paru.git
-	cd paru
-	makepkg -si --noconfirm
-	cd ..
-	rm -rf paru
-fi
-
-# install software
-paru -S --needed --noconfirm ${SOFTWARE_GNOME[@]} ${SOFTWARE[@]}
 
 mkdir $HOME/.local/share/backgrounds/
 cp $HOME/.config/wallpapers/fox-forest.jpg $HOME/.local/share/backgrounds/2022-06-10-19-33-29-fox-forest.jpg
-sudo chsh -s /usr/bin/zsh $USER
-rm -rf $HOME/.bash*
 
 dconf load / < $HOME/.config/gnome/dconf-backup
 
@@ -109,6 +215,10 @@ dconf load / < $HOME/.config/gnome/dconf-backup
 sudo systemctl enable gdm.service
 
 echo "Reboot now."
+
+# TODO Setup nextcloud
+# TODO KeePassXC keyfile and sshkeys
+# TODO Steam and correct vulkan libs, Steam proton
 
 # sudo sed -i 's/^#DiscoverableTimeout.*/DiscoverableTimeout = 0/' /etc/bluetooth/main.conf
 # sudo sed -i 's/^#AlwaysPairable.*/AlwaysPairable = true/' /etc/bluetooth/main.conf

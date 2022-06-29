@@ -32,6 +32,7 @@ require('plugins.orgmode')			-- TODO:
 require('plugins.colorizer')		-- TODO:
 require('plugins.lastplace')		-- TODO:
 require('plugins.gitsigns')			-- TODO:
+require('plugins.toggleterm')		-- TODO:
 
 -- Automatically install required plugins after fresh install.
 if packer_bootstrap then

@@ -24,10 +24,12 @@ PACKER.use {
 			["<leader>c"] = { name = "+code" },
 			["<leader>cb"] = { "<cmd>make<cr>", "Build" },
 			["<leader>cu"] = { "<cmd>make all upload<cr>", "Build and Upload" },
+			["<leader>cs"] = { "<cmd>lua _serial_device_toggle()<CR>", "Connect to serial device" },
+			["<leader>cg"] = { "<cmd>lua _lazygit_toggle()<CR>", "Open LazyGit" },
 		},
 		{
 		})
-		
+
 		-- Orgmode
 		-- https://github.com/nvim-orgmode/orgmode
 		-- These are in a function so that they can be loaded ONLY for Org buffers.
