@@ -42,7 +42,9 @@ typeset -A ZSH_HIGHLIGHT_STYLES
 ZSH_HIGHLIGHT_STYLES[command]='fg=white'
 ZSH_HIGHLIGHT_STYLES[alias]='fg=white'
 
-# Begin: PlatformIO Core completion support
-eval "$(_PIO_COMPLETE=zsh_source pio)"
-# End: PlatformIO Core completion support
+if command -v pio &> /dev/null; then
+	# Begin: PlatformIO Core completion support
+	eval "$(_PIO_COMPLETE=zsh_source pio)"
+	# End: PlatformIO Core completion support
+fi
 
