@@ -26,7 +26,6 @@ setopt completealiases
 # Pure prompt
 zinit light sindresorhus/pure
 autoload -Uz promptinit; promptinit
-prompt pure
 
 PURE_PROMPT_SYMBOL="➜"
 zstyle :prompt:pure:git:stash show yes
