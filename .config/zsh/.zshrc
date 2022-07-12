@@ -24,6 +24,7 @@ zstyle ':completion:*' menu select
 setopt completealiases
 
 # Pure prompt
+zinit light sindresorhus/pure
 autoload -Uz promptinit; promptinit
 prompt pure
 
@@ -48,3 +49,15 @@ if command -v pio &> /dev/null; then
 	# End: PlatformIO Core completion support
 fi
 
+system-install() {
+	ANSIBLE_DIR="$HOME/Projects/system-installer/"
+
+	# Request a fresh OS install
+	if [[ "$1" == "install" ]]; then
+		ANSIBLE_CONFIG=$ANSIBLE_DIR ansible-playbook -i $ANSIBLE_DIR/hosts.yml $ANSIBLE_DIR/archinstall.yml --extra-vars 'ansible_user=root' --limit $2
+	else
+		ANSIBLE_CONFIG=$ANSIBLE_DIR ansible-playbook -i $ANSIBLE_DIR/hosts.yml $ANSIBLE_DIR/postinstall.yml --limit $2
+	fi
+	
+
+}
