@@ -1,5 +1,5 @@
 # Zinit plugin manager. To be loaded before compinit.
-ZINIT_HOME="/usr/share/zinit"
+ZINIT_HOME="$HOME/.local/share/zinit/"
 source "${ZINIT_HOME}/zinit.zsh"
 
 # required for yadm encrypt
