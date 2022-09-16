@@ -1,36 +1,38 @@
 -- https://github.com/NTBBloodbath/doom-one.nvim
 PACKER.use({
     'NTBBloodbath/doom-one.nvim',
-    config = function()
-        require('doom-one').setup({
-            cursor_coloring = false,
-            terminal_colors = false,
-            italic_comments = false,
-            enable_treesitter = true,
-            transparent_background = false,
-            pumblend = {
-                enable = false,
-                transparency_amount = 80,
-            },
-            plugins_integrations = {
-                neorg = true,
-                barbar = true,
-                bufferline = false,
-                gitgutter = false,
-                gitsigns = true,
-                telescope = false,
-                neogit = true,
-                nvim_tree = true,
-                dashboard = true,
-                startify = true,
-                whichkey = true,
-                indent_blankline = true,
-                vim_illuminate = true,
-                lspsaga = false,
-            },
-        })
+    requires = {
+      'kyazdani42/nvim-web-devicons', -- optional, for file icon
+    },
+	setup = function()
+		vim.g.doom_one_cursor_coloring = false
+		vim.g.doom_one_terminal_colors = false
+		vim.g.doom_one_italic_comments = true
+		vim.g.doom_one_enable_treesitter = true
+        vim.g.doom_one_diagnostics_text_color = false
+		vim.g.doom_one_transparent_background = false
 
-	require("doom-one").load_colorscheme()
+        -- Pumblend transparency
+		vim.g.doom_one_pumblend_enable = false
+		vim.g.doom_one_pumblend_transparency = 20
+
+        -- Plugins integration
+		vim.g.doom_one_plugin_neorg = true
+		vim.g.doom_one_plugin_barbar = false
+		vim.g.doom_one_plugin_telescope = false
+		vim.g.doom_one_plugin_neogit = true
+		vim.g.doom_one_plugin_nvim_tree = true
+		vim.g.doom_one_plugin_dashboard = true
+		vim.g.doom_one_plugin_startify = true
+		vim.g.doom_one_plugin_whichkey = true
+		vim.g.doom_one_plugin_indent_blankline = true
+		vim.g.doom_one_plugin_vim_illuminate = true
+		vim.g.doom_one_plugin_lspsaga = false
+	end,
+
+    config = function()
+		vim.cmd("colorscheme doom-one")
+		vim.opt.background = 'dark'
     end,
 })
 
