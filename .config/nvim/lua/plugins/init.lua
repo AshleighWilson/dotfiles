@@ -33,6 +33,7 @@ require('plugins.colorizer')		-- TODO:
 require('plugins.lastplace')		-- TODO:
 require('plugins.gitsigns')			-- TODO:
 require('plugins.toggleterm')		-- TODO:
+require('plugins.nvim-webdev-icons')
 
 -- Automatically install required plugins after fresh install.
 if packer_bootstrap then
