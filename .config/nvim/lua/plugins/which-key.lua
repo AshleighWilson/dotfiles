@@ -10,9 +10,11 @@ PACKER.use {
 		wk.register({
 			["<leader>b"] = { name = "+buffer" },
 			["<leader>bc"] = {"<cmd>bd<cr>", "Close Buffer" },
+			["<leader>bf"] = {"<cmd>Telescope buffers<cr>", "Find Buffer" },
 
 			["<leader>f"] = { name = "+file" },
 			["<leader>ff"] = { "<cmd>Telescope find_files<cr>", "Find File" },
+			["<leader>fg"] = { "<cmd>Telescope live_grep<cr>", "Live grep" },
 			["<leader>fr"] = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
 			["<leader>fn"] = { "<cmd>enew<cr>", "New File" },
 			["<leader>ft"] = { "<cmd>NvimTreeFindFile<cr>", "View Filesystem Tree" },
@@ -26,6 +28,7 @@ PACKER.use {
 			["<leader>cu"] = { "<cmd>make all upload<cr>", "Build and Upload" },
 			["<leader>cs"] = { "<cmd>lua _serial_device_toggle()<CR>", "Connect to serial device" },
 			["<leader>cg"] = { "<cmd>lua _lazygit_toggle()<CR>", "Open LazyGit" },
+			["<leader>cp"] = { "<cmd>Telescope project<CR>", "Projects" },
 		},
 		{
 		})

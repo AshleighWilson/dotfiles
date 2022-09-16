@@ -1,7 +1,7 @@
 -- https://github.com/nvim-telescope/telescope.nvim
 PACKER.use {
 	'nvim-telescope/telescope.nvim',
-	requires = 'nvim-lua/plenary.nvim',
+	requires = { 'nvim-lua/plenary.nvim', 'nvim-telescope/telescope-project.nvim' },
 	config = function()
 		require('telescope').setup {
 			defaults = {
@@ -19,6 +19,8 @@ PACKER.use {
 			extensions = {
 	  		}
 		}
+
+		require('telescope').load_extension('project')
   	end
 }
 
