@@ -30,7 +30,15 @@ PACKER.use {
 		})
 
 		require("org-bullets").setup {
-			symbols = { "◉", "○", "✸", "✿" }
+			concealcursor = true, -- If false then when the cursor is on a line underlying characters are visible
+			symbols = {
+				headlines = { "◉", "○", "✸", "✿" },
+				checkboxes = {
+					half = { "", "OrgTSCheckboxHalfChecked" },
+					done = { "✓", "OrgDone" },
+					todo = { "˟", "OrgTODO" },
+				},
+			}
 		}
 	end
 }

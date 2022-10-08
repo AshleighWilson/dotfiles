@@ -27,7 +27,7 @@ require('plugins.bufferline')		-- TODO:
 require('plugins.nvim-tree')		-- TODO:
 require('plugins.indent-blankline') -- TODO:
 require('plugins.suda')				-- TODO:
-require('plugins.neorg')			-- TODO:
+-- require('plugins.neorg')			-- TODO:
 require('plugins.orgmode')			-- TODO:
 require('plugins.colorizer')		-- TODO:
 require('plugins.lastplace')		-- TODO:
