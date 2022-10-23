@@ -32,6 +32,7 @@ zstyle :prompt:pure:git:stash show yes
 zstyle :prompt:pure:prompt:success color 'green'
 
 # PATH env variable
+path+=('/home/ashleigh/.local/bin/')
 path+=('/home/ashleigh/.platformio/penv/bin')
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
@@ -51,7 +52,7 @@ fi
 system-install() {
 	ANSIBLE_DIR="$HOME/Projects/system-installer/"
 
-	ANSIBLE_CONFIG=$ANSIBLE_DIR ansible-playbook -i $ANSIBLE_DIR/hosts.yml $ANSIBLE_DIR/system-install.yml --ask-pass --ask-become-pass --limit $1
+	ANSIBLE_CONFIG=$ANSIBLE_DIR ansible-playbook -i $ANSIBLE_DIR/hosts.yml $ANSIBLE_DIR/system-install.yml --limit $1
 	
 
 }
