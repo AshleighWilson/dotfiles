@@ -20,3 +20,8 @@ alias xbee3="picocom --echo /dev/serial/by-id/usb-FTDI_FT232R_USB_UART_AL033E26-
 alias arduino="picocom --echo /dev/serial/by-id/usb-Arduino__www.arduino.cc__0043_75735323230351516152-if00 --omap crcrlf -b 115200"
 alias feather-tft="picocom --echo /dev/serial/by-id/usb-Adafruit_Feather_ESP32-S2_TFT_84:f7:03:f5:a5:52-if00 --omap crcrlf -b 115200"
 
+# custom functions used as aliases
+system-install() {
+	ANSIBLE_DIR="$HOME/Projects/system-installer/"
+	ANSIBLE_CONFIG=$ANSIBLE_DIR ansible-playbook -i $ANSIBLE_DIR/hosts.yml $ANSIBLE_DIR/system-install.yml --limit $1
+}

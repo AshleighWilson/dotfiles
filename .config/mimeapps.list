@@ -11,9 +11,9 @@ application/x-extension-shtml=firefox.desktop
 application/xhtml+xml=firefox.desktop
 application/x-extension-xhtml=firefox.desktop
 application/x-extension-xht=firefox.desktop
-x-scheme-handler/mailto=userapp-Thunderbird-DUPYS1.desktop
-message/rfc822=userapp-Thunderbird-DUPYS1.desktop
-x-scheme-handler/mid=userapp-Thunderbird-DUPYS1.desktop
+x-scheme-handler/mailto=userapp-Thunderbird-11AMU1.desktop
+message/rfc822=userapp-Thunderbird-11AMU1.desktop
+x-scheme-handler/mid=userapp-Thunderbird-11AMU1.desktop
 x-scheme-handler/msteams=teams.desktop
 
 [Added Associations]
@@ -27,7 +27,10 @@ application/x-extension-shtml=firefox.desktop;
 application/xhtml+xml=firefox.desktop;
 application/x-extension-xhtml=firefox.desktop;
 application/x-extension-xht=firefox.desktop;
-x-scheme-handler/mailto=userapp-Thunderbird-DUPYS1.desktop;
-x-scheme-handler/mid=userapp-Thunderbird-DUPYS1.desktop;
+x-scheme-handler/mailto=userapp-Thunderbird-DUPYS1.desktop;userapp-Thunderbird-11AMU1.desktop;
+x-scheme-handler/mid=userapp-Thunderbird-DUPYS1.desktop;userapp-Thunderbird-11AMU1.desktop;
 x-scheme-handler/sms=org.gnome.Shell.Extensions.GSConnect.desktop;
 x-scheme-handler/tel=org.gnome.Shell.Extensions.GSConnect.desktop;
+application/x-java-keystore=nvim.desktop;
+application/zip=org.gnome.Nautilus.desktop;
+application/x-compressed-tar=org.gnome.FileRoller.desktop;org.gnome.Nautilus.desktop;
