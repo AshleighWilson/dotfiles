@@ -1,7 +1,7 @@
 # general aliases
 alias ll="ls -l"
 alias grep="grep -n --color"
-alias r="source ~/.zshrc"
+alias r="source ~/.config/zsh/.zshrc"
 
 # jekyll aliases
 alias jrun="bundle exec jekyll serve"
