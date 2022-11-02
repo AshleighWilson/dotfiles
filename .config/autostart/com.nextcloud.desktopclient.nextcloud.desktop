@@ -1,7 +1,7 @@
 [Desktop Entry]
 Name=Nextcloud
 GenericName=File Synchronizer
-Exec=flatpak run com.nextcloud.desktopclient.nextcloud --background
+Exec="/usr/bin/nextcloud" --background
 Terminal=false
 Icon=Nextcloud
 Categories=Network
