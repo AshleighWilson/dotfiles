@@ -1,5 +1,6 @@
 # general aliases
 alias ll="ls -l"
+alias grep="grep -n --color"
 
 # jekyll aliases
 alias jrun="bundle exec jekyll serve"
