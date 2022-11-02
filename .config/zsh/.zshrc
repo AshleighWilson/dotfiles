@@ -49,10 +49,3 @@ if command -v pio &> /dev/null; then
 	# End: PlatformIO Core completion support
 fi
 
-system-install() {
-	ANSIBLE_DIR="$HOME/Projects/system-installer/"
-
-	ANSIBLE_CONFIG=$ANSIBLE_DIR ansible-playbook -i $ANSIBLE_DIR/hosts.yml $ANSIBLE_DIR/system-install.yml --limit $1
-	
-
-}
