@@ -1,3 +1,6 @@
+# general aliases
+alias ll="ls -l"
+
 # jekyll aliases
 alias jrun="bundle exec jekyll serve"
 alias jrund="bundle exec jekyll serve --drafts"
