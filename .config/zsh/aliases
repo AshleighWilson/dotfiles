@@ -1,3 +1,8 @@
+# general aliases
+alias ll="ls -l"
+alias grep="grep -n --color"
+alias r="source ~/.config/zsh/.zshrc"
+
 # jekyll aliases
 alias jrun="bundle exec jekyll serve"
 alias jrund="bundle exec jekyll serve --drafts"
@@ -8,6 +13,7 @@ alias restore-settings="cat $HOME/.config/gnome/dconf-backup | dconf load /"
 
 # git aliases
 alias config='lazygit --use-config-file "$HOME/.config/yadm/lazygit.yml,$HOME/.config/lazygit/config.yml" --work-tree ~ --git-dir ~/.local/share/yadm/repo.git'
+alias lg='lazygit'
 
 # serial devices
 alias xbee1="picocom --echo /dev/serial/by-id/usb-FTDI_FT232R_USB_UART_AL033E2Q-if00-port0 --omap crcrlf"
