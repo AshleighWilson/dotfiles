@@ -11,29 +11,36 @@ PACKER = require('packer').startup(function(use)
 	use 'wbthomason/packer.nvim'
 end)
 
--- Load plugins
-require('plugins.lspconfig')		-- TODO:
-require('plugins.nvim-cmp')			-- TODO:
-require('plugins.luasnip')			-- TODO:
-require('plugins.dashboard')		-- TODO:
-require('plugins.comment')			-- TODO:
-require('plugins.which-key')		-- TODO:
-require('plugins.doom-one')			-- TODO:
-require('plugins.treesitter')		-- TODO:
-require('plugins.telescope')		-- TODO:
-require('plugins.todo-comments')	-- TODO:
-require('plugins.galaxyline')		-- TODO:
-require('plugins.bufferline')		-- TODO:
-require('plugins.nvim-tree')		-- TODO:
-require('plugins.indent-blankline') -- TODO:
-require('plugins.suda')				-- TODO:
--- require('plugins.neorg')			-- TODO:
-require('plugins.orgmode')			-- TODO:
-require('plugins.colorizer')		-- TODO:
-require('plugins.lastplace')		-- TODO:
-require('plugins.gitsigns')			-- TODO:
-require('plugins.toggleterm')		-- TODO:
+-- Core plugins
+require('plugins.plenary')
 require('plugins.nvim-webdev-icons')
+require('plugins.lspconfig')
+require('plugins.nvim-cmp')
+require('plugins.treesitter')
+
+-- Themes
+require('plugins.catppuccin')
+
+-- Usability
+require('plugins.lastplace') -- Remember where we were
+require('plugins.suda') -- Save files as root
+require('plugins.luasnip') -- Snippets
+require('plugins.comment') -- Comment code
+require('plugins.indent-blankline') -- Auto indenting
+require('plugins.orgmode') -- Org mode
+-- require('plugins.neorg')
+
+-- User interface
+require('plugins.lualine') -- Status line
+require('plugins.bufferline') -- Tab line
+require('plugins.telescope') -- Picker
+require('plugins.gitsigns') -- Git status
+require('plugins.nvim-tree') -- File explorer
+require('plugins.which-key') -- View keyboard shortcuts
+require('plugins.colorizer') -- Preview colours
+require('plugins.todo-comments') -- Highlight keywords
+require('plugins.dashboard') -- Startup screen
+require('plugins.toggleterm') -- Terminal in neovim
 
 -- Automatically install required plugins after fresh install.
 if packer_bootstrap then

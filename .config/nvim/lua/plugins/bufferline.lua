@@ -1,6 +1,7 @@
 -- https://github.com/akinsho/bufferline.nvim
 PACKER.use {
 	'akinsho/bufferline.nvim',
+	after = "catppuccin",
 	tag = "*",
 	requires = {'kyazdani42/nvim-web-devicons'},
 	config = function()
@@ -16,6 +17,7 @@ PACKER.use {
   					}
 				}
 			},
+			highlights = require("catppuccin.groups.integrations.bufferline").get(),
 		}
   	end
 }
