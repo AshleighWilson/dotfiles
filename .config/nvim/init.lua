@@ -38,6 +38,12 @@ vim.opt.expandtab = false -- don't expand tabs into spaces
 vim.opt.shiftround = true
 vim.opt.wrap = false
 
+vim.opt.foldmethod="expr"
+vim.opt.foldexpr="nvim_treesitter#foldexpr()"
+vim.opt.foldenable = false
+
+vim.opt.laststatus = 3 -- Global status line
+
 -- Custom file types
 vim.cmd 'autocmd BufRead,BufNewFile *.rasi set filetype=css'
 
