@@ -32,6 +32,7 @@ PACKER.use {
 				"norg",
 				"norg_meta",
 				"norg_table",
+				"yaml",
 			},
 			highlight = {
 				enable = true,
