@@ -6,7 +6,7 @@ source "${ZINIT_HOME}/zinit.zsh"
 export GPG_TTY=$(tty)
 
 # custom alias definitions
-source $HOME/.config/zsh/aliases
+source $HOME/.config/zsh/aliases.zsh
 
 # history
 export SAVEHIST=10000

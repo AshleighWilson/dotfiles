@@ -24,6 +24,12 @@ alias feather-tft="picocom --echo /dev/serial/by-id/usb-Adafruit_Feather_ESP32-S
 
 # custom functions used as aliases
 system-install() {
+	if [ $# -lt 2 ]; then
+		TAGS="all"
+	else
+		TAGS="$2"
+	fi
+
 	ANSIBLE_DIR="$HOME/Projects/system-installer/"
-	ANSIBLE_CONFIG=$ANSIBLE_DIR ansible-playbook -i $ANSIBLE_DIR/hosts.yml $ANSIBLE_DIR/system-install.yml --limit $1
+	ANSIBLE_CONFIG=$ANSIBLE_DIR ansible-playbook -i $ANSIBLE_DIR/hosts.yml $ANSIBLE_DIR/system-install.yml --tags "$TAGS" --limit $1
 }
