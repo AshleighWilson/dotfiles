@@ -1,0 +1,46 @@
+snippet rpm-spec "Spec file for RPM's."
+	Name: $1
+	Version: $2
+	Release: %autorelease
+	Summary: $3
+
+	License: $4
+	URL: $5
+
+	Source0: $6
+	Patch0: $7
+
+	BuildRequires: $8
+
+	%description
+	$9
+
+	%global debug_package %{nil}
+	
+	# Prepare sources for building (unpack and patch).
+	%prep
+	%autosetup
+
+	# Configure sources.
+	%conf
+	%configure
+
+	# Compile sources into binaries.
+	%build
+	%make_build
+
+	# Prepare installation layout by creating directory structure.
+	%install 
+	%make_install
+
+	# Installation of files
+	%files
+	%doc README.md
+	%license LICENSE
+	# %{_bindir}/
+	# %{_mandir}/
+	# %config(noreplace) %{_sysconfdir}/%{name}.conf
+	# %{_sysconfdir}/
+
+	%changelog
+	%autochangelog
