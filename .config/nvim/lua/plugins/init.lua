@@ -28,6 +28,7 @@ require('plugins.luasnip') -- Snippets
 require('plugins.comment') -- Comment code
 require('plugins.indent-blankline') -- Auto indenting
 require('plugins.orgmode') -- Org mode
+require('plugins.whitespace') -- Trailing whitespace
 -- require('plugins.neorg')
 
 -- User interface
