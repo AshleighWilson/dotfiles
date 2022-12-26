@@ -12,8 +12,6 @@ local dashboard = require('dashboard')
 
 dashboard.custom_header = {
   "                                                       ",
-  "                                                       ",
-  "                                                       ",
   " ███╗   ██╗ ███████╗ ██████╗  ██╗   ██╗ ██╗ ███╗   ███╗",
   " ████╗  ██║ ██╔════╝██╔═══██╗ ██║   ██║ ██║ ████╗ ████║",
   " ██╔██╗ ██║ █████╗  ██║   ██║ ██║   ██║ ██║ ██╔████╔██║",
@@ -22,16 +20,14 @@ dashboard.custom_header = {
   " ╚═╝  ╚═══╝ ╚══════╝ ╚═════╝    ╚═══╝   ╚═╝ ╚═╝     ╚═╝",
   "                                                       ",
   "                                                       ",
-  "                                                       ",
-  "                                                       ",
 }
 
 dashboard.custom_center = {
   {
-    icon = "  ",
-    desc = "Find  File                              ",
-    action = "Telescope find_files find_command=rg,--hidden,--files",
-    shortcut = "<Leader> ff",
+    icon = "  ",
+    desc = "New file                                ",
+    action = "enew",
+    shortcut = "n          ",
   },
   {
     icon = "  ",
@@ -40,23 +36,23 @@ dashboard.custom_center = {
     shortcut = "<Leader> fr",
   },
   {
+    icon = "  ",
+    desc = "Find  File                              ",
+    action = "Telescope find_files find_command=rg,--hidden,--files",
+    shortcut = "<Leader> ff",
+  },
+  {
     icon = "  ",
     desc = "Open project                            ",
     action = "Telescope project",
     shortcut = "<Leader> cp",
   },
-  {
-    icon = "  ",
-    desc = "Open Nvim config                        ",
-    action = "tabnew $MYVIMRC | tcd %:p:h",
-    shortcut = "<Leader> ev",
-  },
-  {
-    icon = "  ",
-    desc = "New file                                ",
-    action = "enew",
-    shortcut = "n          ",
-  },
+  -- {
+  --   icon = "  ",
+  --   desc = "Open Nvim config                        ",
+  --   action = "tabnew $MYVIMRC | tcd %:p:h",
+  --   shortcut = "<Leader> ev",
+  -- },
   {
     icon = "  ",
     desc = "Quit Nvim                               ",
@@ -65,6 +61,7 @@ dashboard.custom_center = {
   },
 }
 
+-- Custom shortcuts
 vim.cmd([[
   augroup dashboard_enter
     au!
