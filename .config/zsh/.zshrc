@@ -8,6 +8,9 @@ export GPG_TTY=$(tty)
 # custom alias definitions
 source $HOME/.config/zsh/aliases.zsh
 
+# custom syntax highlighting
+source ~/.config/zsh/syntax/catppuccin_frappe-zsh-syntax-highlighting.zsh
+
 # history
 export SAVEHIST=10000
 export HISTSIZE=10000
@@ -17,6 +20,8 @@ setopt EXTENDED_HISTORY
 setopt HIST_FIND_NO_DUPS
 setopt HIST_IGNORE_ALL_DUPS
 setopt share_history
+bindkey "^[[A" history-beginning-search-backward
+bindkey "^[[B" history-beginning-search-forward
 
 # completion
 autoload -Uz compinit; compinit
