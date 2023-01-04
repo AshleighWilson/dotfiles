@@ -1,4 +1,4 @@
--- Documentation: https://github.com/johnfrankmorgan/whitespace.nvim-plugin
+-- Documentation: https://github.com/johnfrankmorgan/whitespace.nvim
 PACKER.use {
 	'johnfrankmorgan/whitespace.nvim',
 	requires = {},
