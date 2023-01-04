@@ -33,3 +33,17 @@ system-install() {
 	ANSIBLE_DIR="$HOME/Projects/system-installer/"
 	ANSIBLE_CONFIG=$ANSIBLE_DIR ansible-playbook -i $ANSIBLE_DIR/hosts.yml $ANSIBLE_DIR/system-install.yml --tags "$TAGS" --limit $1
 }
+
+pio-new-project() {
+	declare -a BOARDS=(
+		"adafruit_feather_esp32s2_tft"
+		"uno"
+	)
+
+	BOARD=$(print -l $BOARDS | fzf)
+	pio project init --ide vim --board $BOARD
+
+	echo "Delete first two lines of .ccls to prevent error with ccls.."
+	sed -i '1,2d' .ccls
+
+}
