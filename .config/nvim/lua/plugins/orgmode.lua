@@ -30,6 +30,7 @@ PACKER.use {
 			mappings = {
 				disable_all = false,
 			},
+			win_split_mode = 'tabnew',
 		})
 
 		require("org-bullets").setup {
