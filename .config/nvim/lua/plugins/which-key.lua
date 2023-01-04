@@ -6,7 +6,7 @@ PACKER.use {
 		}
 
 		local wk = require("which-key")
-		
+
 		wk.register({
 			["<leader>b"] = { name = "+buffer" },
 			["<leader>bc"] = {"<cmd>bd<cr>", "Close Buffer" },
@@ -17,7 +17,8 @@ PACKER.use {
 			["<leader>fg"] = { "<cmd>Telescope live_grep<cr>", "Live grep" },
 			["<leader>fr"] = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
 			["<leader>fn"] = { "<cmd>enew<cr>", "New File" },
-			["<leader>ft"] = { "<cmd>NvimTreeFindFile<cr>", "View Filesystem Tree" },
+			["<leader>ft"] = { "<cmd>NvimTreeFindFile!<CR>", "View Filesystem Tree" },
+			["<leader>fh"] = { "<cmd>NvimTreeOpen $HOME<CR>", "View Home Directory"},
 
 			["<leader>n"] = { name = "+neovim" },
 			["<leader>np"] = { name = "+packer" },
@@ -28,7 +29,13 @@ PACKER.use {
 			["<leader>cu"] = { "<cmd>make all upload<cr>", "Build and Upload" },
 			["<leader>cs"] = { "<cmd>lua _serial_device_toggle()<CR>", "Connect to serial device" },
 			["<leader>cg"] = { "<cmd>lua _lazygit_toggle()<CR>", "Open LazyGit" },
-			["<leader>cp"] = { "<cmd>Telescope project<CR>", "Projects" },
+
+			["<leader>p"] = { "<cmd>Telescope project<CR>", "projects" },
+
+			["<leader>w"] = { name = "+window" },
+			["<leader>wq"] = { "<cmd>quit<CR>", "close window" },
+			["<leader>ws"] = { "<cmd>new<CR>", "horizontal split" },
+			["<leader>wv"] = { "<cmd>vnew<CR>", "vertical split" },
 		},
 		{
 		})
@@ -69,7 +76,7 @@ PACKER.use {
 			['<leader>oxq'] = { '<Cmd>lua require("orgmode").action("agenda.clock_cancel")<CR>', "Cancel Clock" },
 		}, { })
 		end
-		
+
 		-- Orgmode
 		augroup('orgmode', {
 		"FileType org :set conceallevel=2",
