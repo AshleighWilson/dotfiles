@@ -1,7 +1,7 @@
 -- Documentation: https://github.com/johnfrankmorgan/whitespace.nvim
-PACKER.use {
+return {
 	'johnfrankmorgan/whitespace.nvim',
-	requires = {},
+	dependencies= {},
 	config = function()
 		require('whitespace-nvim').setup({
         		highlight = '@text.danger',

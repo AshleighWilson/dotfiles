@@ -1,11 +1,11 @@
 -- https://github.com/nvim-lualine/lualine.nvim
-PACKER.use {
+return {
 	'nvim-lualine/lualine.nvim',
-	requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+	dependencies = { 'kyazdani42/nvim-web-devicons', "catppuccin/nvim" },
+	opts = {
+		options = {
+			theme = "catppuccin"
+		}
+	},
 }
 
-require('lualine').setup {
-    options = {
-        theme = "catppuccin"
-    }
-}

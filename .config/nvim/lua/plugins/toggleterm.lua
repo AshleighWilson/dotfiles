@@ -1,7 +1,7 @@
 -- Documentation: https://github.com/akinsho/toggleterm.nvim#custom-terminals
-PACKER.use {
+return {
 	'akinsho/toggleterm.nvim',
-	requires = {},
+	dependencies = {},
 	config = function()
 		require('toggleterm').setup {
 			open_mapping = [[<C-\>]],

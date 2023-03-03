@@ -1,7 +1,4 @@
 -- Documentation: https://github.com/lambdalisue/suda.vim
-PACKER.use {
+return {
 	'lambdalisue/suda.vim',
-	requires = {},
-	config = function()
-	end
 }

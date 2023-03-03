@@ -1,8 +1,6 @@
 -- https://github.com/numToStr/Comment.nvim
-PACKER.use {
+return {
     'numToStr/Comment.nvim',
-    config = function()
-        require('Comment').setup()
-    end
+    config = true,
 }
 

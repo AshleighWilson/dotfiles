@@ -1,9 +1,6 @@
 -- Documentation: https://github.com/lewis6991/gitsigns.nvim
-PACKER.use {
+return {
 	'lewis6991/gitsigns.nvim',
-	requires = {},
-	config = function()
-		require('gitsigns').setup {
-		}
-	end
+	dependencies= {},
+	config = true
 }

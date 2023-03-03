@@ -11,13 +11,13 @@ function augroup(name, autocmds)
   vim.cmd('augroup END')
 end
 
--- Plugins
-require('plugins')
-
 --Remap space as leader key
 -- vim.api.nvim_set_keymap('', '<Space>', '<Nop>', { noremap = true, silent = true })
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
+
+-- Plugins
+require('plugins')
 
 -- Set key press timeout (i.e. for which-key)
 vim.opt.timeoutlen=500
@@ -48,7 +48,7 @@ vim.opt.laststatus = 3 -- Global status line
 vim.cmd 'autocmd BufRead,BufNewFile *.rasi set filetype=css'
 
 -- Reload neovim and plugins when configs are updated
-vim.cmd([[
+--[[ vim.cmd([[
   augroup reload_config
     autocmd!
     autocmd BufWritePost init.lua luafile <afile>
@@ -56,6 +56,7 @@ vim.cmd([[
     autocmd BufWritePost ~/.config/nvim/lua/plugins/*.lua lua require('plugins')
     autocmd BufWritePost ~/.config/nvim/lua/plugins/*.lua PackerCompile
   augroup end
-]])
-
+]]
+--)
+--]]
 

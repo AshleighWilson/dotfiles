@@ -1,7 +1,6 @@
 -- https://github.com/kyazdani42/nvim-web-devicons
-PACKER.use {
+return {
     'kyazdani42/nvim-web-devicons',
-    config = function() require('nvim-web-devicons').setup {
-    } end
+    config = true
 }
 

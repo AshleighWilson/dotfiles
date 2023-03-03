@@ -1,7 +1,7 @@
 -- Documentation: https://github.com/nvim-orgmode/orgmode
-PACKER.use {
+return {
 	'nvim-orgmode/orgmode',
-	requires = { 'akinsho/org-bullets.nvim', 'nvim-treesitter/nvim-treesitter' },
+	dependencies= { 'akinsho/org-bullets.nvim', 'nvim-treesitter/nvim-treesitter' },
 	config = function()
 		require('orgmode').setup {
 			-- Load custom tree-sitter grammar for org filetype

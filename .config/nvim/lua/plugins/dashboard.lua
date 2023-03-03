@@ -1,71 +1,51 @@
 -- Documentation: https://github.com/glepnir/dashboard-nvim
-PACKER.use {
+return {
 	'glepnir/dashboard-nvim',
-	requires = {},
+	dependencies = { 'nvim-telescope/telescope.nvim', 'kyazdani42/nvim-web-devicons' },
+	event = "VimEnter",
 	config = function()
 		vim.g.dashboard_default_executive = "telescope"
+		require('dashboard').setup {
+			config = {
+				header = {
+					"                                                       ",
+					" ███╗   ██╗ ███████╗ ██████╗  ██╗   ██╗ ██╗ ███╗   ███╗",
+					" ████╗  ██║ ██╔════╝██╔═══██╗ ██║   ██║ ██║ ████╗ ████║",
+					" ██╔██╗ ██║ █████╗  ██║   ██║ ██║   ██║ ██║ ██╔████╔██║",
+					" ██║╚██╗██║ ██╔══╝  ██║   ██║ ╚██╗ ██╔╝ ██║ ██║╚██╔╝██║",
+					" ██║ ╚████║ ███████╗╚██████╔╝  ╚████╔╝  ██║ ██║ ╚═╝ ██║",
+					" ╚═╝  ╚═══╝ ╚══════╝ ╚═════╝    ╚═══╝   ╚═╝ ╚═╝     ╚═╝",
+					"                                                       ",
+				},
+				shortcut = {
+					{
+						desc = ' Update',
+						group = '@property',
+						action = 'Lazy update',
+						key = 'u' },
+					{
+						icon = ' ',
+						icon_hl = '@variable',
+						desc = 'Files',
+						group = 'Label',
+						action = 'Telescope find_files',
+						key = 'f',
+					},
+					{
+						desc = ' Apps',
+						group = 'DiagnosticHint',
+						action = 'Telescope app',
+						key = 'a',
+					},
+					{
+						desc = ' dotfiles',
+						group = 'Number',
+						action = 'Telescope dotfiles',
+						key = 'd',
+					},
+				}
+			}
+		}
 	end,
-
 }
 
-local dashboard = require('dashboard')
-
-dashboard.custom_header = {
-  "                                                       ",
-  " ███╗   ██╗ ███████╗ ██████╗  ██╗   ██╗ ██╗ ███╗   ███╗",
-  " ████╗  ██║ ██╔════╝██╔═══██╗ ██║   ██║ ██║ ████╗ ████║",
-  " ██╔██╗ ██║ █████╗  ██║   ██║ ██║   ██║ ██║ ██╔████╔██║",
-  " ██║╚██╗██║ ██╔══╝  ██║   ██║ ╚██╗ ██╔╝ ██║ ██║╚██╔╝██║",
-  " ██║ ╚████║ ███████╗╚██████╔╝  ╚████╔╝  ██║ ██║ ╚═╝ ██║",
-  " ╚═╝  ╚═══╝ ╚══════╝ ╚═════╝    ╚═══╝   ╚═╝ ╚═╝     ╚═╝",
-  "                                                       ",
-  "                                                       ",
-}
-
-dashboard.custom_center = {
-  {
-    icon = "  ",
-    desc = "New file                                ",
-    action = "enew",
-    shortcut = "n          ",
-  },
-  {
-    icon = "  ",
-    desc = "Recently opened files                   ",
-    action = "Telescope oldfiles",
-    shortcut = "<Leader> fr",
-  },
-  {
-    icon = "  ",
-    desc = "Find  File                              ",
-    action = "Telescope find_files find_command=rg,--hidden,--files",
-    shortcut = "<Leader> ff",
-  },
-  {
-    icon = "  ",
-    desc = "Open project                            ",
-    action = "Telescope project",
-    shortcut = "<Leader> cp",
-  },
-  -- {
-  --   icon = "  ",
-  --   desc = "Open Nvim config                        ",
-  --   action = "tabnew $MYVIMRC | tcd %:p:h",
-  --   shortcut = "<Leader> ev",
-  -- },
-  {
-    icon = "  ",
-    desc = "Quit Nvim                               ",
-    action = "qa",
-    shortcut = "q          ",
-  },
-}
-
--- Custom shortcuts
-vim.cmd([[
-  augroup dashboard_enter
-    au!
-    autocmd FileType dashboard nnoremap <buffer> q :qa<CR>
-    autocmd FileType dashboard nnoremap <buffer> n :enew<CR>
-  augroup END
-]])

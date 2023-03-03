@@ -1,7 +1,7 @@
 -- https://github.com/hrsh7th/nvim-cmp
-PACKER.use {
+return {
     'hrsh7th/nvim-cmp',
-    requires = { 'hrsh7th/cmp-path' },
+    dependencies = { 'hrsh7th/cmp-path' },
 	config = function()
 		local cmp = require('cmp')
 		local has_words_before = function()

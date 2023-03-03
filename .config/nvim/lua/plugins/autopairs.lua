@@ -1,9 +1,6 @@
 -- Documentation: https://github.com/windwp/nvim-autopairs
-PACKER.use {
+return {
 	'windwp/nvim-autopairs',
-	requires = {},
-	config = function()
-		require('nvim-autopairs').setup {
-		}
-	end
+	dependencies= {},
+	config = true,
 }

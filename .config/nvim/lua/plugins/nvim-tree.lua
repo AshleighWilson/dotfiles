@@ -1,19 +1,15 @@
 -- https://github.com/kyazdani42/nvim-tree.lua
-PACKER.use {
+return {
     'kyazdani42/nvim-tree.lua',
-    requires = {
-      'kyazdani42/nvim-web-devicons', -- optional, for file icon
-    },
-    config = function() require('nvim-tree').setup {
+    dependencies = { 'kyazdani42/nvim-web-devicons' },
+    opts = {
     	actions = {
 			open_file = { quit_on_open = true }
 		},
 		renderer = {
 			indent_markers = { enable = true },
-
-			-- Add trailing slash on folders
-			add_trailing = true,
+			add_trailing = true, -- Add trailing slash on folders
 		}
-    } end
+    }
 }
 

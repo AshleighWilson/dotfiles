@@ -1,7 +1,6 @@
 -- https://github.com/nvim-treesitter/nvim-treesitter
-PACKER.use {
+return {
 	'nvim-treesitter/nvim-treesitter',
-        run = ':TSUpdate',
 	config = function()
 		local parser_configs = require('nvim-treesitter.parsers').get_parser_configs()
 
@@ -38,5 +37,7 @@ PACKER.use {
 				enable = true,
 			}
 		}
+
+		-- vim.cmd("TSUpdate")
 	end
 }

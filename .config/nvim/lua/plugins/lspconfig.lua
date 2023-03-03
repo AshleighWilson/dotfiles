@@ -1,29 +1,27 @@
 -- Documentation: https://github.com/neovim/nvim-lspconfig
-PACKER.use {
-	'neovim/nvim-lspconfig',
-	requires = {
-		'hrsh7th/cmp-nvim-lsp',
-		'saadparwaiz1/cmp_luasnip'
-	},
+return {
+	'neovim/nvim-lspconfig', 
+	dependencies = { 'hrsh7th/cmp-nvim-lsp', 'saadparwaiz1/cmp_luasnip' },
 	config = function()
 		local capabilities = vim.lsp.protocol.make_client_capabilities()
 		capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
 		-- C/C++ (ccls)
-	 	require('lspconfig').ccls.setup {
-				capabilities = capabilities,
-	 	}
+		require('lspconfig').ccls.setup {
+			capabilities = capabilities,
+		}
 
 		-- python
-		require'lspconfig'.pyright.setup{}
+		require'lspconfig'.pyright.setup {
+		}
 
 		-- lua (lua-language-server - https://github.com/sumneko/lua-language-server)
 		local runtime_path = vim.split(package.path, ';')
 		table.insert(runtime_path, "lua/?.lua")
 		table.insert(runtime_path, "lua/?/init.lua")
 		require'lspconfig'.sumneko_lua.setup {
-				capabilities = capabilities,
-				settings = {
+			capabilities = capabilities,
+			settings = {
 				Lua = {
 					runtime = {
 						version = 'LuaJIT',
@@ -58,11 +56,10 @@ PACKER.use {
 			},
 		}
 
-	 	-- bash
+		-- bash
 		require("lspconfig").bashls.setup {
-				capabilities = capabilities,
+			capabilities = capabilities,
 		}
-
 		-- yaml
 		require("lspconfig").yamlls.setup{
 			settings = {

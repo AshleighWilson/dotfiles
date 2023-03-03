@@ -1,4 +1,4 @@
 -- https://github.com/nvim-lua/plenary.nvim
-PACKER.use {
+return {
 	"nvim-lua/plenary.nvim"
 }
