@@ -14,6 +14,6 @@ return {
   				}
 			}
 		},
-		highlights = require("catppuccin.groups.integrations.bufferline").get(),
+--		highlights = require("catppuccin.groups.integrations.bufferline").get(),
 	}
 }
