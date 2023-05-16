@@ -35,6 +35,7 @@ require("lazy").setup({
 	-- { require('plugins.whitespace') }, -- Trailing whitespace
 	{ require('plugins.autopairs') },
 	-- require('plugins.neorg')
+	{ require('plugins.nvim-ts-autotag') },
 
 	-- User interface
 	{ require('plugins.nvim-tree') }, -- File explorer
