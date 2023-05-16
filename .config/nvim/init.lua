@@ -16,8 +16,6 @@ end
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
--- Plugins
-require('plugins')
 
 -- Set key press timeout (i.e. for which-key)
 vim.opt.timeoutlen=500
@@ -29,12 +27,12 @@ vim.opt.cursorline = true
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.termguicolors = true -- enable colorscheme support
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 4 -- spaces per tab (when shifting), when using the >> or << commands, shift lines by 4 spaces
+vim.opt.tabstop = 2
+vim.opt.softtabstop = 2
+vim.opt.shiftwidth = 2 -- spaces per tab (when shifting), when using the >> or << commands, shift lines by 4 spaces
 vim.opt.smarttab = true -- <tab>/<BS> indent/dedent in leading whitespace
 vim.opt.autoindent = true -- maintain indent of current line
-vim.opt.expandtab = false -- don't expand tabs into spaces
+vim.opt.expandtab = true -- expand tabs into spaces
 vim.opt.shiftround = true
 vim.opt.wrap = false
 
@@ -43,6 +41,10 @@ vim.opt.foldexpr="nvim_treesitter#foldexpr()"
 vim.opt.foldenable = false
 
 vim.opt.laststatus = 3 -- Global status line
+
+-- Plugins
+require('plugins')
+vim.cmd.colorscheme "catppuccin-frappe"
 
 -- Custom file types
 vim.cmd 'autocmd BufRead,BufNewFile *.rasi set filetype=css'

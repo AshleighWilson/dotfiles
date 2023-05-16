@@ -8,10 +8,10 @@ return {
 --		indent_blankline = { enabled = true },
 --		native_lsp = { enabled = true },
 --		cmp = true,
-		nvimtree = true,
+--		nvimtree = true,
 --		treesitter = true,
 		},
-		vim.cmd.colorscheme "catppuccin-frappe",
+--		vim.cmd.colorscheme "catppuccin-frappe",
 	}
 }
 
