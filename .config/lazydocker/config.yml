@@ -1,0 +1,14 @@
+customCommands:
+  containers:
+    - name: Django Shell
+      attach: true
+      command: 'docker exec -it {{ .Container.ID }} python manage.py shell'
+    - name: Django Make Migrations
+      attach: true
+      command: 'docker exec -it {{ .Container.ID }} python manage.py makemigrations'
+    - name: Django Migrate
+      attach: true
+      command: 'docker exec -it {{ .Container.ID }} python manage.py migrate'
+    - name: Django Create Superuser
+      attach: true
+      command: 'docker exec -it {{ .Container.ID }} python manage.py createsuperuser'
