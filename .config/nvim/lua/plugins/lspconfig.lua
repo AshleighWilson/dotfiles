@@ -1,10 +1,11 @@
 -- Documentation: https://github.com/neovim/nvim-lspconfig
 return {
-	'neovim/nvim-lspconfig', 
+	'neovim/nvim-lspconfig',
 	dependencies = { 'hrsh7th/cmp-nvim-lsp', 'saadparwaiz1/cmp_luasnip' },
 	config = function()
 		local capabilities = vim.lsp.protocol.make_client_capabilities()
 		capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+		capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 		-- C/C++ (ccls)
 		require('lspconfig').ccls.setup {
@@ -19,7 +20,7 @@ return {
 		local runtime_path = vim.split(package.path, ';')
 		table.insert(runtime_path, "lua/?.lua")
 		table.insert(runtime_path, "lua/?/init.lua")
-		require'lspconfig'.sumneko_lua.setup {
+		require'lspconfig'.lua_ls.setup {
 			capabilities = capabilities,
 			settings = {
 				Lua = {
@@ -70,5 +71,45 @@ return {
 				},
 			}
 		}
+
+		-- html
+		--Enable (broadcasting) snippet capability for completion
+		require("lspconfig").html.setup {
+			capabilities = capabilities,
+			filetypes = { "html", "htmldjango" },
+			init_options = {
+				configurationSection = { "htmldjango", "html", "css", "javascript" },
+			}
+		}
+
+		-- markdown
+		require'lspconfig'.marksman.setup{}
+
+		-- javascript
+		-- FIX: Not attached to buffer at present
+		require('lspconfig').eslint.setup{
+			capabilities = capabilities,
+			filetypes = { 'html', 'htmldjango' }
+		}
+
+		require('lspconfig').cssls.setup{
+			capabilities = capabilities,
+		}
+
+		require('lspconfig').tsserver.setup{
+			capabilities = capabilities,
+		}
+
+    require('lspconfig').pylsp.setup{
+      settings = {
+        pylsp = {
+          plugins = {
+            pydocstyle = { enabled = true },
+            mypy = { enabled = true }
+          }
+        }
+      }
+
+    }
 	end
 }

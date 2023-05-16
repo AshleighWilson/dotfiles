@@ -23,6 +23,7 @@ return {
 		}
 
 		require('nvim-treesitter.configs').setup {
+			auto_install = true,
 			ensure_installed = {
 				"c",
 				"cpp",
@@ -32,12 +33,18 @@ return {
 				"norg_meta",
 				"norg_table",
 				"yaml",
+				"htmldjango",
+				"html",
 			},
 			highlight = {
 				enable = true,
+			},
+			autotag = {
+				enable = true,
+				filetypes = { "htmldjango", "html" },
 			}
 		}
-
+		-- require"nvim-treesitter.parsers".filetype_to_parsername.htmldjango = 'html'
 		-- vim.cmd("TSUpdate")
-	end
+	end,
 }
