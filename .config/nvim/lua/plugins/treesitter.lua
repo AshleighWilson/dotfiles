@@ -35,6 +35,7 @@ return {
 				"yaml",
 				"htmldjango",
 				"html",
+        "python",
 			},
 			highlight = {
 				enable = true,
@@ -42,7 +43,8 @@ return {
 			autotag = {
 				enable = true,
 				filetypes = { "htmldjango", "html" },
-			}
+			},
+      indent = { enable = true },
 		}
 		-- require"nvim-treesitter.parsers".filetype_to_parsername.htmldjango = 'html'
 		-- vim.cmd("TSUpdate")
