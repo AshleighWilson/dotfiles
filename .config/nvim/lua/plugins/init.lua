@@ -36,6 +36,7 @@ require("lazy").setup({
 	{ require('plugins.autopairs') },
 	-- require('plugins.neorg')
 	{ require('plugins.nvim-ts-autotag') },
+  { require('plugins.trouble') }, -- Diagnostics window
 
 	-- User interface
 	{ require('plugins.nvim-tree') }, -- File explorer

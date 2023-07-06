@@ -29,6 +29,7 @@ return {
 			["<leader>cu"] = { "<cmd>make all upload<cr>", "Build and Upload" },
 			["<leader>cs"] = { "<cmd>lua _serial_device_toggle()<CR>", "Connect to serial device" },
 			["<leader>cg"] = { "<cmd>lua _lazygit_toggle()<CR>", "Open LazyGit" },
+      ["<leader>cd"] = { "<cmd>lua require'telescope.builtin'.diagnostics{}<CR>", "diagnostics" },
 
 			["<leader>p"] = { "<cmd>Telescope project<CR>", "projects" },
 
