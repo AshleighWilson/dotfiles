@@ -47,7 +47,7 @@ require('plugins')
 vim.cmd.colorscheme "catppuccin-frappe"
 
 -- Custom file types
-vim.cmd 'autocmd BufRead,BufNewFile *.rasi set filetype=css'
+vim.cmd 'autocmd BufRead,BufNewFile *.rasi set filetype=rasi'
 
 -- Reload neovim and plugins when configs are updated
 --[[ vim.cmd([[
