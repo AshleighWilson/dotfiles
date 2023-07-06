@@ -36,6 +36,7 @@ return {
 				"htmldjango",
 				"html",
         "python",
+        "rasi",
 			},
 			highlight = {
 				enable = true,
@@ -46,6 +47,7 @@ return {
 			},
       indent = { enable = true },
 		}
+    -- require"nvim-treesitter".parsers.filetype_to_parsername.rasi = "rasi"
 		-- require"nvim-treesitter.parsers".filetype_to_parsername.htmldjango = 'html'
 		-- vim.cmd("TSUpdate")
 	end,
