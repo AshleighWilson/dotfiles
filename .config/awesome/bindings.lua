@@ -27,11 +27,22 @@ globalkeys = gears.table.join(
     -- Rofi launcher.
     awful.key({ modkey },            "r",     function () awful.util.spawn("rofi -show run") end,
               {description = "run launcher (rofi)", group = "launcher"}),
+    awful.key({ modkey, "Shift" },            "r",     function () awful.util.spawn("rofi -show drun") end,
+              {description = "run launcher (rofi)", group = "launcher"}),
+
+  -- Keepmenu (keepass)
+  awful.key({ modkey },            "p",     function () awful.util.spawn_with_shell("~/.local/bin/keepmenu") end,
+    {description = "keepmenu (keepass) password manager", group = "system"}),
+
+  -- Shutdown menu
+  awful.key({ modkey },            "q",     function () awful.util.spawn_with_shell("$HOME/.config/scripts/shutdown.sh") end,
+   {description = "shutdown menu", group = "system"}),
+
 
     awful.key({ modkey },            "q",     function () awful.util.spawn_with_shell("$HOME/test.sh") end,
               {description = "shutdown menu", group = "system"}),
 
-    awful.key({ modkey, "Shift" }, "r", function () awesome.restart() end,
+    awful.key({ modkey, "Control" }, "r", function () awesome.restart() end,
               {description="restart awesome", group="awesome"}),
 
 	  -- Awesome popup help (cheatsheet).
@@ -92,22 +103,24 @@ globalkeys = gears.table.join(
         end,
         {description = "go back", group = "client"}),
 
-      ---- resizing slaves
-    awful.key({ modkey, "Shift" }, "l", function () awful.client.incwfact(-0.05) end),
-    awful.key({ modkey, "Shift" }, "h", function () awful.client.incwfact(0.05) end),
+      ---- resizing
+    awful.key({ modkey, "Shift" }, "Down", function () awful.client.incwfact(-0.05) end,
+              { description = "decrease slave size", group = "layout"}),
+    awful.key({ modkey, "Shift" }, "Up", function () awful.client.incwfact(0.05) end,
+              { description = "increase slave size", group = "layout"}),
+    awful.key({ modkey, "Shift" }, "Right",     function () awful.tag.incmwfact( 0.05)          end,
+              {description = "increase master width factor", group = "layout"}),
+    awful.key({ modkey, "Shift" }, "Left",     function () awful.tag.incmwfact(-0.05)          end,
+              {description = "decrease master width factor", group = "layout"}),
 
     -- Standard program
     awful.key({ modkey,           }, "Return", function () awful.spawn(terminal) end,
               {description = "open a terminal", group = "launcher"}),
-    awful.key({ modkey, "Shift" }, "r", awesome.restart,
+    awful.key({ modkey, "Control" }, "r", awesome.restart,
               {description = "reload awesome", group = "awesome"}),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit,
               {description = "quit awesome", group = "awesome"}),
 
-    awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)          end,
-              {description = "increase master width factor", group = "layout"}),
-    awful.key({ modkey,           }, "h",     function () awful.tag.incmwfact(-0.05)          end,
-              {description = "decrease master width factor", group = "layout"}),
     -- awful.key({ modkey, "Shift"   }, "h",     function () awful.tag.incnmaster( 1, nil, true) end,
     --           {description = "increase the number of master clients", group = "layout"}),
     -- awful.key({ modkey, "Shift"   }, "l",     function () awful.tag.incnmaster(-1, nil, true) end,
