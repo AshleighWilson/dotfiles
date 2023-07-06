@@ -11,9 +11,6 @@ local vicious = require('vicious')
 
 menubar.utils.terminal = terminal -- Set the terminal for applications that require it
 
--- Keyboard map indicator and switcher 
--- mykeyboardlayout = awful.widget.keyboardlayout()
-
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
                     awful.button({ }, 1, function(t) t:view_only() end),
@@ -152,28 +149,25 @@ awful.screen.connect_for_each_screen(function(s)
     }
 
     -- Create a tasklist widget
-    s.mytasklist = awful.widget.tasklist {
-        screen  = s,
-        filter  = awful.widget.tasklist.filter.focused,
-        buttons = tasklist_buttons
-    }
+    -- s.mytasklist = awful.widget.tasklist {
+    --     screen  = s,
+    --     filter  = awful.widget.tasklist.filter.focused,
+    --     buttons = tasklist_buttons
+    -- }
 
-    -- Create a textclock widget
-    mytextclock = wibox.widget.textclock()
-
-	tbox_separator = wibox.widget.textbox(" | ")
+	local sep = wibox.widget.textbox(" | ")
 
 
 	-- Battery percent widget
 	-- https://github.com/deficient/battery-widget
-	-- local battery_widget = require("battery-widget")
-	-- local battery = battery_widget {
-	-- 	battery_prefix = '<span color="#F0C674">BAT </span>',
-	-- 	percent_colors = {
-	-- 		{ 25, "#A54242" },
-	-- 		{ 999 ,'#C5C8C6' },
-	-- 	}
-	-- }
+	local battery_widget = require("battery-widget")
+	local battery = battery_widget {
+		battery_prefix = '<span color="#F0C674">BAT </span>',
+		percent_colors = {
+			{ 25, "#A54242" },
+			{ 999 ,'#C5C8C6' },
+		}
+	}
 
 	local bat_widget = wibox.widget.textbox()
 	vicious.register(bat_widget, vicious.widgets.bat,
@@ -183,13 +177,14 @@ awful.screen.connect_for_each_screen(function(s)
 				return "FULL"
 			elseif args[1] == "-" then
 				-- Discharging
-				return ("BAT %02d%%"):format(args[2])
+				return ("<span color='#F0C674'>BAT</span> <span color='#C5C8C6'>%02d%%</span>"):format(args[2])
 			elseif args[1] == "⌁" then
 				return "UNKNOWN" -- unknown
 			elseif args[1] == "↯" then
 				return "CHARGED" -- charged
 			elseif args[1] == "+" then
-				return "CHARGING" -- charging
+				-- Charging
+				return ("<span color='#F0C674'>CHG</span> <span color='#C5C8C6'>%02d%%</span>"):format(args[2])
 			else
 				return "ERROR!"
 			end
@@ -197,7 +192,7 @@ awful.screen.connect_for_each_screen(function(s)
 		2, "BAT0")
 
 	local datewidget = wibox.widget.textbox()
-	vicious.register(datewidget, vicious.widgets.date, "%b %d %R")
+	vicious.register(datewidget, vicious.widgets.date, "%b %d, %R")
 
 	local cpu_widget = wibox.widget.textbox()
 	vicious.register(cpu_widget, vicious.widgets.cpu, "<span color='#F0C674'>CPU</span> <span color='#C5C8C6'>$1%</span>", 2)
@@ -210,12 +205,12 @@ awful.screen.connect_for_each_screen(function(s)
 	vicious.register(root_fs_widget, vicious.widgets.fs, "<span color='#F0C674'>/</span> <span color='#C5C8C6'>${/ used_p}%</span>", 13)
 
 	local wifi_widget = wibox.widget.textbox()
-	vicious.register(wifi_widget, vicious.widgets.net, "<span color='#F0C674'>WLAN</span> <span color='#C5C8C6'>${wlp0s20f3 down_mb} MB/s ${wlp0s20f3 up_mb} MB/s</span>", 2)
+	vicious.register(wifi_widget, vicious.widgets.net, "<span color='#F0C674'>LAN</span> <span color='#C5C8C6'>${wlp0s20f3 down_mb} / ${wlp0s20f3 up_mb}</span>", 2)
 
 	local volume_widget = wibox.widget.textbox()
 	vicious.register(volume_widget, vicious.widgets.volume, "<span color='#F0C674'>VOL</span> <span color='#C5C8C6'>$1%</span>", 2, {"Master", "-c", "0"})
 
-batwidget = wibox.widget.progressbar()
+	local batwidget = wibox.widget.progressbar()
 
     -- Create an imagebox widget which will contain an icon indicating which layout we're using.
     -- We need one layoutbox per screen.
@@ -237,31 +232,22 @@ batwidget = wibox.widget.progressbar()
             -- mylauncher,
             s.mytaglist,
             s.mypromptbox,
-			tbox_separator
+			sep,
         },
-        s.mytasklist, -- Middle widget
-        { -- Right widgets
+
+		s.mytasklist, -- Middle widget
+
+		{ -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-			datewidget,
-			tbox_separator,
-			bat_widget,
-			tbox_separator,
-			battery,
-			tbox_separator,
-			cpu_widget,
-			tbox_separator,
-			ram_widget,
-			tbox_separator,
-			root_fs_widget,
-			tbox_separator,
-			wifi_widget,
-			tbox_separator,
-			volume_widget,
-			tbox_separator,
+			datewidget,		sep,
+			bat_widget,		sep,
+			-- battery,		sep, -- TODO: Remove
+			cpu_widget,		sep,
+			ram_widget,		sep,
+			root_fs_widget, sep,
+			wifi_widget,	sep,
+			volume_widget,	sep,
             wibox.widget.systray(),
-			tbox_separator,
-            mytextclock,
-			tbox_separator,
             s.mylayoutbox,
         },
     }
