@@ -105,9 +105,10 @@ return {
         pylsp = {
           plugins = {
             pydocstyle = { enabled = true },
-            mypy = { enabled = true }
+            mypy = { enabled = true },
+            pylint = { enabled = true, args = {"--load-plugins pylint_django", "--django-settings-module=crp.app.settings"}},
           }
-        }
+        },
       }
 
     }
