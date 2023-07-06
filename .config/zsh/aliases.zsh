@@ -14,6 +14,15 @@ alias restore-settings="cat $HOME/.config/gnome/dconf-backup | dconf load /"
 # git aliases
 alias config='lazygit --use-config-file "$HOME/.config/yadm/lazygit.yml,$HOME/.config/lazygit/config.yml" --work-tree ~ --git-dir ~/.local/share/yadm/repo.git'
 alias lg='lazygit'
+alias gl='git log --oneline'
+
+# docker aliases
+alias dc='docker-compose'
+alias docker-up-prod='docker compose -f prod.yml up --build'
+alias docker-up-dev='docker compose -f dev.yml up --build'
+alias docker-down-prod='docker compose -f prod.yml down'
+alias docker-down-dev='docker compose -f dev.yml down'
+alias docker-clean='docker rm -vf $(docker ps -aq) && docker rmi -f $(docker images -aq) && docker images'
 
 # serial devices
 alias xbee1="picocom --echo /dev/serial/by-id/usb-FTDI_FT232R_USB_UART_AL033E2Q-if00-port0 --omap crcrlf"
