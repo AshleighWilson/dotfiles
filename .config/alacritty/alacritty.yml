@@ -81,7 +81,7 @@ window:
 font:
   # Normal (roman) font face
   normal:
-    family: Roboto Mono Nerd Font Mono
+    family: JetBrains Mono Nerd Font Mono
     # family: FiraCode NFM
 
     # The `style` can be specified to pick a specific face.
