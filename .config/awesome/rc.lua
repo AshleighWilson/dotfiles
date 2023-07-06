@@ -106,10 +106,10 @@ awful.layout.layouts = {
     awful.layout.suit.fair.horizontal,
     awful.layout.suit.spiral,
     awful.layout.suit.spiral.dwindle,
-    awful.layout.suit.max,
-    awful.layout.suit.max.fullscreen,
-    awful.layout.suit.magnifier,
-    awful.layout.suit.corner.nw,
+    -- awful.layout.suit.max,
+    -- awful.layout.suit.max.fullscreen,
+    -- awful.layout.suit.magnifier,
+    -- awful.layout.suit.corner.nw,
     -- awful.layout.suit.corner.ne,
     -- awful.layout.suit.corner.sw,
     -- awful.layout.suit.corner.se,
@@ -152,7 +152,7 @@ awful.spawn.with_shell("feh --auto-reload --no-fehbg --bg-fill .config/wallpaper
 awful.spawn.with_shell("picom")
 awful.spawn.with_shell("nextcloud --background")
 awful.spawn.with_shell("thunar --daemon")
-awful.spawn.with_shell("plank")
+-- awful.spawn.with_shell("plank")
 awful.spawn.with_shell("xfce4-power-manager")
 awful.spawn.with_shell("gnome-keyring-daemon")
 
