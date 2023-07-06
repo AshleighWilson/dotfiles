@@ -1,7 +1,7 @@
 -- https://github.com/akinsho/bufferline.nvim
 return {
 	'akinsho/bufferline.nvim',
-	dependencies = {'kyazdani42/nvim-web-devicons'},
+	dependencies = {'nvim-tree/nvim-web-devicons'},
 	opts = {	
 		options = {
 			always_show_bufferline = false,

@@ -1,6 +1,6 @@
 -- https://github.com/kyazdani42/nvim-web-devicons
 return {
-    'kyazdani42/nvim-web-devicons',
+    'nvim-tree/nvim-web-devicons',
     config = true
 }
 

@@ -1,7 +1,7 @@
 -- Documentation: https://github.com/glepnir/dashboard-nvim
 return {
 	'glepnir/dashboard-nvim',
-	dependencies = { 'nvim-telescope/telescope.nvim', 'kyazdani42/nvim-web-devicons' },
+	dependencies = { 'nvim-telescope/telescope.nvim', 'nvim-tree/nvim-web-devicons' },
 	event = "VimEnter",
 	config = function()
 		vim.g.dashboard_default_executive = "telescope"

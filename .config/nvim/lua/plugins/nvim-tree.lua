@@ -1,7 +1,7 @@
 -- https://github.com/kyazdani42/nvim-tree.lua
 return {
-    'kyazdani42/nvim-tree.lua',
-    dependencies = { 'kyazdani42/nvim-web-devicons' },
+    'nvim-tree/nvim-tree.lua',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
     opts = {
     	actions = {
 			open_file = { quit_on_open = true }

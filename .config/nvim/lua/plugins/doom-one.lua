@@ -2,7 +2,7 @@
 PACKER.use({
     'NTBBloodbath/doom-one.nvim',
     requires = {
-      'kyazdani42/nvim-web-devicons', -- optional, for file icon
+      'nvim-tree/nvim-web-devicons', -- optional, for file icon
     },
 	setup = function()
 		vim.g.doom_one_cursor_coloring = false
