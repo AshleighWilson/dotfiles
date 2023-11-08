@@ -29,6 +29,7 @@ zstyle ':completion:*' menu select
 setopt completealiases
 
 # Pure prompt
+zinit ice compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh'
 zinit light sindresorhus/pure
 autoload -Uz promptinit; promptinit
 PURE_PROMPT_SYMBOL="➜"
